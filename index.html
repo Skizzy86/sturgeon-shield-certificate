@@ -780,6 +780,78 @@
       line-height: 1.45;
       font-weight: 700;
     }
+    .print-toast {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      z-index: 1200;
+      display: none;
+      gap: 14px;
+      align-items: center;
+      max-width: 440px;
+      padding: 14px 16px;
+      background: #FFFFFF;
+      border: 1px solid rgba(15,34,52,0.18);
+      border-left: 4px solid var(--gold);
+      box-shadow: 0 10px 30px rgba(15,34,52,0.22);
+      color: var(--navy);
+    }
+    .print-toast.show { display: flex; }
+    .print-toast strong {
+      display: block;
+      margin-bottom: 3px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .print-toast p {
+      margin: 0;
+      font-size: 0.82rem;
+      color: var(--mid-gray);
+      line-height: 1.35;
+    }
+    .toast-actions {
+      display: flex;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .toast-btn {
+      padding: 7px 10px;
+      border-radius: 3px;
+      border: 1px solid var(--gold);
+      font-family: 'Lato', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .toast-btn.primary {
+      background: var(--gold);
+      color: var(--navy);
+    }
+    .toast-btn.secondary {
+      background: transparent;
+      color: var(--navy);
+      border-color: rgba(15,34,52,0.28);
+    }
+    @media screen and (max-width: 640px) {
+      .print-toast {
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        max-width: none;
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .toast-actions {
+        justify-content: flex-end;
+        flex-wrap: wrap;
+      }
+      .toast-btn { flex: 1; }
+    }
 
     /* ─────────────────────────────────────── */
     /* ─── PRINT STYLES ─── */
@@ -791,6 +863,7 @@
       }
       #toolbar { display: none !important; }
       .validation-message { display: none !important; }
+      .print-toast { display: none !important; }
       .page-wrapper {
         max-width: 100%;
         margin: 0;
@@ -829,10 +902,21 @@
   <span class="toolbar-title">Sturgeon Shield™ — Certificate Form</span>
   <button class="tb-btn secondary" onclick="addProductRow()">+ Add Product Row</button>
   <button class="tb-btn secondary" onclick="clearAllSignatures()">Clear Signatures</button>
+  <button class="tb-btn danger" onclick="clearFormFields()">Clear Form</button>
   <button class="tb-btn primary" onclick="validateAndPrint()">⎙ Print / Save PDF</button>
 </div>
 
 <div class="validation-message" id="validationMessage"></div>
+<div class="print-toast" id="printToast" role="status" aria-live="polite">
+  <div>
+    <strong>Print/PDF complete?</strong>
+    <p>Start the next blank Stand Alone form when ready.</p>
+  </div>
+  <div class="toast-actions">
+    <button class="toast-btn secondary" onclick="hidePrintToast()">Keep Editing</button>
+    <button class="toast-btn primary" onclick="startNewFormFromToast()">New Form</button>
+  </div>
+</div>
 
 <!-- ══════════════════════════════════════ -->
 <!--  PAGE 1 — CERTIFICATE                  -->
@@ -1150,7 +1234,7 @@
 
     <!-- Products & Services Table -->
     <div class="section-title">Products &amp; Services Applied <span style="font-weight:300;text-transform:none;font-family:'Lato';font-size:0.75rem;letter-spacing:0;color:var(--mid-gray)">(Stand Alone (SA) or Tier)</span></div>
-    <p class="table-note">Mark N/A for items not included in the selected package. Record date applied for all active items. Click any cell to edit. Use the toolbar to add new rows.</p>
+    <p class="table-note">Package selection loads the standard product and coverage rows automatically. Record date applied for all active items; cells remain editable for corrections, add-ons, or exceptions.</p>
 
     <div class="products-table-wrap">
       <table class="products-table" id="productsTable">
@@ -1353,58 +1437,97 @@ function autoGrow(el) {
   });
 }
 
-// ─── Default product rows ───────────────────────────────────────────────────
-const DEFAULT_PRODUCTS = [
-  {
+// ─── Package-driven product rows ────────────────────────────────────────────
+const PRODUCT_LIBRARY = {
+  clayBar: {
+    product: 'Clay Bar Decontamination Treatment',
+    coverage: 'Exterior painted panels and glass — removes bonded contaminants before protection is applied'
+  },
+  prepSpray: {
+    product: 'Total Clean Prep Spray',
+    coverage: 'Exterior and treated surfaces — final cleaning and surface preparation before coating'
+  },
+  graphenePaint: {
     product: 'Graphene Paint Armour (SiO2 NanoCoating)',
-    coverage: 'Exterior painted panels — UV barrier, self-healing, hydrophobic protection',
-    tier: 'TIER 1/2/3 / SA',
-    na: false,
-    date: ''
+    coverage: 'Exterior painted panels — UV barrier, self-healing, hydrophobic protection'
   },
-  {
-    product: 'Leather Interior Shield (Graphene Ceramic)',
-    coverage: 'All treated leather/vinyl/fabric — stain, UV, spill & rip/tear/burn protection',
-    tier: 'TIER 1/2/3 / SA',
-    na: false,
-    date: ''
+  leatherInterior: {
+    product: 'Leather/Vinyl Interior Shield',
+    coverage: 'Treated leather and vinyl surfaces — stain, UV, spill, and wear protection'
   },
-  {
+  fabricProtection: {
+    product: 'Fabric Protection',
+    coverage: 'Carpets, trunk, headliner, and treated fabric surfaces — stain and spill resistance'
+  },
+  amberRust: {
+    product: 'Amber Based Solvent Rust Inhibitor',
+    coverage: 'Inner cavities, door panels, and crevices — moisture displacement and corrosion prevention'
+  },
+  ceramic10h: {
     product: 'Ceramic PRO 10H Shield',
-    coverage: 'Exterior panels & trim — 10H permanent hardness, candy gloss',
-    tier: 'TIER 2/3 / SA',
-    na: false,
-    date: ''
+    coverage: 'Exterior panels and trim — 10H permanent hardness, gloss, paint defect, and UV protection'
   },
-  {
-    product: 'Windshield Ceramic Coating',
-    coverage: 'Glass surfaces — hydrophobic, rain-repelling, clarity treatment',
-    tier: 'TIER 2/3 / SA',
-    na: false,
-    date: ''
+  windshieldCeramic: {
+    product: 'Windshield & Sideview Mirrors Ceramic Coating',
+    coverage: 'Glass and mirror surfaces — hydrophobic treatment, enhanced rain visibility, and chip resistance'
   },
-  {
+  rustSpray: {
     product: 'Rust Inhibitor Spray',
-    coverage: 'Inner cavities & door panels — solvent-based amber, moisture displacement',
-    tier: 'TIER 2/3 / SA',
-    na: false,
-    date: ''
+    coverage: 'Inner cavities and door panels — solvent-based amber formula, bonds to metal, no drilling required'
   },
-  {
+  electronicRust: {
     product: 'Electronic Rust Inhibitor',
-    coverage: 'OBD-II plug-in module — 24/7 pulsing current corrosion protection',
-    tier: 'Tier 3 / SA',
-    na: false,
-    date: ''
+    coverage: 'OBD-II plug-in module — 24/7 pulsing current corrosion protection across sheet metal panels'
   },
-  {
+  interiorWarranty: {
+    product: 'Interior Rip / Tear / Burn Warranty',
+    coverage: 'Treated seating surfaces, console lid, door panel inserts, and headrests — 5-year interior damage coverage'
+  },
+  paintDefect: {
+    product: 'Paint Defect Coverage',
+    coverage: 'Factory-painted body panels — paint fading, UV degradation, and qualifying coating failure coverage'
+  },
+  rustCorrosion: {
+    product: 'Rust & Corrosion Coverage',
+    coverage: 'Treated panels and corrosion-prevention systems — 10 years new / 5 years pre-owned for Tier 3'
+  },
+  undercoating: {
     product: 'Undercoating',
-    coverage: 'Full underbody — solvent-based amber, sound deadening, road salt barrier',
-    tier: 'Tier 3 / SA',
+    coverage: 'Full underbody — solvent-based amber, sound deadening, road salt barrier'
+  },
+  tireRim: {
+    product: 'Tire & Rim Protection',
+    coverage: 'Covered tires and rims — qualifying road hazard protection as listed in the selected package'
+  }
+};
+
+const PACKAGE_PRODUCT_KEYS = {
+  'SA': ['graphenePaint', 'leatherInterior', 'ceramic10h', 'windshieldCeramic', 'rustSpray', 'electronicRust', 'undercoating', 'tireRim'],
+  'Essentials': ['clayBar', 'prepSpray', 'graphenePaint', 'leatherInterior', 'fabricProtection', 'amberRust'],
+  'Essentials+': ['clayBar', 'prepSpray', 'graphenePaint', 'leatherInterior', 'fabricProtection', 'amberRust', 'ceramic10h', 'windshieldCeramic', 'rustSpray'],
+  'Total Control': ['clayBar', 'prepSpray', 'graphenePaint', 'leatherInterior', 'fabricProtection', 'amberRust', 'ceramic10h', 'windshieldCeramic', 'rustSpray', 'electronicRust', 'interiorWarranty', 'paintDefect', 'rustCorrosion', 'undercoating', 'tireRim']
+};
+
+const PACKAGE_TIER_LABELS = {
+  'SA': 'SA',
+  'Essentials': 'Tier 1',
+  'Essentials+': 'Tier 2',
+  'Total Control': 'Tier 3'
+};
+
+function rowsForPackage(pkg) {
+  const keys = PACKAGE_PRODUCT_KEYS[pkg] || PACKAGE_PRODUCT_KEYS['SA'];
+  const tier = PACKAGE_TIER_LABELS[pkg] || 'SA';
+  return keys.map(key => ({
+    product: PRODUCT_LIBRARY[key].product,
+    coverage: PRODUCT_LIBRARY[key].coverage,
+    tier,
     na: false,
     date: ''
-  }
-];
+  }));
+}
+
+const DEFAULT_PRODUCTS = rowsForPackage('SA');
 
 // ─── Render product table ────────────────────────────────────────────────────
 function renderProducts(rows) {
@@ -1528,14 +1651,8 @@ function selectPkg(val, skipTier) {
       });
     }
   }
+  renderProducts(rowsForPackage(val));
 }
-// Allow clicking the label
-document.querySelectorAll('.pkg-option').forEach(el => {
-  el.addEventListener('click', () => {
-    const val = el.querySelector('input').value;
-    selectPkg(val);
-  });
-});
 
 // ─── Signature Pads ──────────────────────────────────────────────────────────
 const sigPads = {};
@@ -1615,6 +1732,53 @@ function clearAllSignatures() {
   [1, 2].forEach(n => clearSig(n));
 }
 
+function clearFormFields(skipConfirm = false) {
+  if (!skipConfirm && !window.confirm('Clear all form fields, notes, signatures, and reset to Stand Alone?')) {
+    return;
+  }
+
+  hidePrintToast();
+
+  document.querySelectorAll('input').forEach(input => {
+    if (input.type === 'radio' || input.type === 'checkbox') {
+      input.checked = false;
+    } else {
+      input.value = '';
+    }
+  });
+
+  document.querySelectorAll('textarea').forEach(textarea => {
+    textarea.value = '';
+    autoGrow(textarea);
+  });
+
+  document.querySelectorAll('.tier-card, .pkg-option').forEach(el => el.classList.remove('selected'));
+  document.getElementById('certNumDisplay').textContent = 'SS____________';
+  selectPkg('SA');
+  clearAllSignatures();
+  clearValidationState();
+
+  setTimeout(() => {
+    document.querySelectorAll('.coverage-ta').forEach(ta => autoGrow(ta));
+  }, 30);
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function showPrintToast() {
+  const toast = document.getElementById('printToast');
+  if (toast) toast.classList.add('show');
+}
+
+function hidePrintToast() {
+  const toast = document.getElementById('printToast');
+  if (toast) toast.classList.remove('show');
+}
+
+function startNewFormFromToast() {
+  clearFormFields();
+}
+
 function onSignatureChange() {
   const sig1 = sigPads['sig1'] && sigPads['sig1'].hasSignature();
   const stamp = document.getElementById('officialStamp');
@@ -1690,13 +1854,18 @@ function validateCertificate() {
   return false;
 }
 
+let printWasRequested = false;
+
 function validateAndPrint() {
-  if (validateCertificate()) window.print();
+  if (!validateCertificate()) return;
+  hidePrintToast();
+  printWasRequested = true;
+  window.print();
 }
 
 // Initialize after the product table and canvases have layout dimensions.
 window.addEventListener('load', () => {
-  renderProducts(DEFAULT_PRODUCTS);
+  selectPkg('SA');
 
   // Auto-grow all coverage textareas after render
   setTimeout(() => {
@@ -1708,6 +1877,12 @@ window.addEventListener('load', () => {
     initSigPad('sigCanvas1', 'sig1');
     initSigPad('sigCanvas2', 'sig2');
   }, 150);
+});
+
+window.addEventListener('afterprint', () => {
+  if (!printWasRequested) return;
+  printWasRequested = false;
+  showPrintToast();
 });
 
 // Re-init canvases on resize (debounced)

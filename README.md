@@ -19,7 +19,8 @@ Single-file GitHub Pages version of the Sturgeon Shield Vehicle Protection Certi
 ## Final QA
 
 - Confirm the Sturgeon logo loads from `sturgeon-logo.png`.
-- Fill a test certificate.
-- Select package/tier.
+- Confirm the form defaults to Stand Alone with Stand Alone product rows.
+- Select package/tier and confirm the product table updates automatically.
+- Use Clear Form and confirm the form resets to a blank Stand Alone certificate.
 - Sign both signature boxes.
-- Confirm Print / Save PDF creates the full five-page certificate.
+- Confirm Print / Save PDF creates the full five-page certificate and shows the next-form toast after the print dialog closes.
