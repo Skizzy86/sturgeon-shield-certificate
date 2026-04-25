@@ -1,0 +1,1724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sturgeon Shield™ — Vehicle Protection Certificate</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Oswald:wght@400;500;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    /* ─── CSS Variables ─── */
+    :root {
+      --gold:       #C8960C;
+      --gold-light: #E8B020;
+      --gold-pale:  #FDF6E3;
+      --navy:       #1A2035;
+      --navy-mid:   #2C3A57;
+      --red:        #8B1C1C;
+      --charcoal:   #2D2D2D;
+      --mid-gray:   #666;
+      --light-gray: #F5F5F5;
+      --border:     #CCCCCC;
+      --white:      #FFFFFF;
+      --page-width: 860px;
+    }
+
+    /* ─── Reset & Base ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 14px; }
+    body {
+      background: #DADADA;
+      font-family: 'Lato', sans-serif;
+      color: var(--charcoal);
+      min-height: 100vh;
+      padding-bottom: 60px;
+    }
+
+    /* ─── Toolbar ─── */
+    #toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--navy);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+    }
+    #toolbar .toolbar-title {
+      font-family: 'Oswald', sans-serif;
+      color: var(--gold);
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      flex: 1;
+    }
+    #toolbar .toolbar-hint {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.35);
+      font-style: italic;
+      margin-right: 8px;
+    }
+    .tb-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 18px;
+      border: none;
+      border-radius: 3px;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-transform: uppercase;
+    }
+    .tb-btn.primary {
+      background: var(--gold);
+      color: var(--navy);
+    }
+    .tb-btn.primary:hover { background: var(--gold-light); }
+    .tb-btn.secondary {
+      background: transparent;
+      color: var(--gold);
+      border: 1.5px solid var(--gold);
+    }
+    .tb-btn.secondary:hover { background: rgba(200,150,12,0.12); }
+    .tb-btn.danger {
+      background: transparent;
+      color: #E57373;
+      border: 1.5px solid #E57373;
+    }
+    .tb-btn.danger:hover { background: rgba(229,115,115,0.1); }
+
+    /* ─── Page Wrapper ─── */
+    .page-wrapper {
+      max-width: var(--page-width);
+      margin: 32px auto;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    /* ─── Certificate Card ─── */
+    .cert-card {
+      background: var(--white);
+      box-shadow: 0 4px 32px rgba(0,0,0,0.18);
+      position: relative;
+      overflow: visible;
+    }
+
+    /* ─── Cert Header ─── */
+    .cert-header {
+      background: var(--white);
+      padding: 20px 40px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 3px solid var(--gold);
+    }
+    .cert-header-left {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .cert-header-left h1 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.05em;
+      line-height: 1;
+    }
+    .cert-header-left h1 span { color: var(--charcoal); }
+    .cert-header-left .subtitle {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.24em;
+      color: var(--mid-gray);
+      text-transform: uppercase;
+    }
+    .cert-header-right {
+      display: flex;
+      align-items: center;
+    }
+    .dealer-logo-area {
+      width: 150px;
+      height: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+    .dealer-logo-area img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    /* ─── Cert Body ─── */
+    .cert-body {
+      padding: 24px 40px 36px;
+    }
+
+    /* ─── Cert Number Row ─── */
+    .cert-num-row {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      padding: 12px 20px;
+      background: var(--gold-pale);
+      border-left: 4px solid var(--gold);
+      border-top: 1px solid #E8D59A;
+      border-right: 1px solid #E8D59A;
+      border-bottom: 1px solid #E8D59A;
+      border-radius: 0 3px 3px 0;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    .cert-num-row .cert-field-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .cert-num-row label {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--navy);
+      white-space: nowrap;
+      opacity: 0.75;
+    }
+    .cert-num-row .cert-num-display {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: 0.1em;
+      min-width: 160px;
+      border-bottom: 2px solid var(--gold);
+      padding: 2px 6px;
+      cursor: default;
+    }
+    .cert-num-row input[type="date"],
+    .cert-num-row input[type="text"] {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.85rem;
+      border: none;
+      border-bottom: 1.5px solid var(--border);
+      padding: 3px 6px;
+      background: transparent;
+      color: var(--charcoal);
+      min-width: 130px;
+    }
+    .cert-num-row input:focus {
+      outline: none;
+      border-bottom-color: var(--gold);
+    }
+
+    /* ─── Section Header ─── */
+    .section-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border-bottom: 2px solid var(--gold);
+      padding-bottom: 6px;
+      margin: 24px 0 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-title::before {
+      content: '';
+      display: inline-block;
+      width: 4px;
+      height: 14px;
+      background: var(--gold);
+      border-radius: 1px;
+      flex-shrink: 0;
+    }
+
+    /* ─── Form Fields Grid ─── */
+    .field-grid {
+      display: grid;
+      gap: 14px 24px;
+    }
+    .field-grid.cols-1 { grid-template-columns: 1fr; }
+    .field-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+    .field-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+    .field-grid.cols-auto { grid-template-columns: 2fr 1fr; }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .form-field label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--navy);
+      opacity: 0.7;
+    }
+    .form-field input[type="text"],
+    .form-field input[type="date"],
+    .form-field input[type="tel"],
+    .form-field input[type="number"] {
+      border: none;
+      border-bottom: 1.5px solid var(--border);
+      padding: 6px 4px;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.92rem;
+      color: var(--charcoal);
+      background: transparent;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+    .form-field input:focus {
+      outline: none;
+      border-bottom-color: var(--gold);
+    }
+    .form-field input::placeholder { color: #bbb; }
+
+    /* ─── Vehicle Type Radio ─── */
+    .radio-group {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      padding: 6px 0;
+    }
+    .radio-group label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.88rem;
+      font-weight: 400;
+      text-transform: none;
+      letter-spacing: 0;
+      color: var(--charcoal);
+      cursor: pointer;
+    }
+    .radio-group input[type="radio"] {
+      accent-color: var(--gold);
+      width: 15px;
+      height: 15px;
+    }
+
+    /* ─── Divider ─── */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 24px 0;
+    }
+
+    /* ─── Acknowledgement Text ─── */
+    .ack-text {
+      font-size: 0.8rem;
+      line-height: 1.7;
+      color: #555;
+      font-style: italic;
+      margin-bottom: 20px;
+      padding: 12px 16px;
+      background: var(--light-gray);
+      border-left: 3px solid var(--border);
+      border-radius: 0 3px 3px 0;
+    }
+
+    /* ─── Signature Columns ─── */
+    .sig-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+    .sig-block h4 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--navy);
+      margin-bottom: 4px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 6px;
+    }
+    .sig-block p {
+      font-size: 0.78rem;
+      color: var(--mid-gray);
+      margin-bottom: 12px;
+      font-style: italic;
+    }
+    .sig-canvas-wrap {
+      border: 1.5px solid var(--border);
+      border-radius: 3px;
+      background: #FAFAFA;
+      position: relative;
+      height: 90px;
+    }
+    .sig-canvas-wrap canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      cursor: crosshair;
+      border-radius: 3px;
+    }
+    .sig-canvas-label {
+      position: absolute;
+      bottom: 6px;
+      left: 8px;
+      font-size: 0.7rem;
+      color: #ccc;
+      pointer-events: none;
+      font-style: italic;
+    }
+    .sig-clear-btn {
+      font-size: 0.68rem;
+      color: var(--mid-gray);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px 0;
+      text-decoration: underline;
+      display: block;
+      margin-top: 3px;
+    }
+    .sig-clear-btn:hover { color: var(--red); }
+    .sig-fields {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .sig-fields .form-field input {
+      font-size: 0.88rem;
+    }
+
+    /* ─── Official Stamp ─── */
+    .stamp-wrap {
+      display: flex;
+      justify-content: center;
+      margin-top: 24px;
+      min-height: 140px;
+      align-items: center;
+    }
+    #officialStamp {
+      opacity: 0;
+      transform: scale(1.3) rotate(-8deg);
+      transition: none;
+      pointer-events: none;
+    }
+    #officialStamp.stamp-active {
+      animation: stampDown 0.45s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+    }
+    @keyframes stampDown {
+      0%   { opacity: 0; transform: scale(1.4) rotate(-8deg); }
+      60%  { opacity: 1; transform: scale(0.95) rotate(-3deg); }
+      80%  { transform: scale(1.02) rotate(-3.5deg); }
+      100% { opacity: 1; transform: scale(1) rotate(-4deg); }
+    }
+
+    /* ─── Page Footer ─── */
+    .cert-footer {
+      border-top: 2px solid var(--light-gray);
+      padding: 10px 40px;
+      text-align: center;
+      background: #FAFAFA;
+    }
+    .cert-footer p {
+      font-size: 0.68rem;
+      color: var(--mid-gray);
+      line-height: 1.6;
+    }
+    .cert-footer p:last-child { font-style: italic; }
+    .cert-footer p strong { font-weight: 700; color: var(--charcoal); }
+
+    /* ─── Page 2: Package Tiers ─── */
+    .tier-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .tier-card {
+      padding: 18px 16px;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.2s;
+      border-radius: 4px;
+      border: 2px solid transparent;
+    }
+    .tier-card input[type="radio"] { display: none; }
+    .tier-card.t1 { background: #1E2A3A; border-color: #2C3E55; }
+    .tier-card.t2 { background: #1E2A3A; border-color: #2C3E55; }
+    .tier-card.t3 { background: #1A1A1A; border-color: #3A3000; }
+    .tier-card .tier-badge {
+      display: inline-flex;
+      gap: 6px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+    .tier-badge-pill {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 2px;
+    }
+    .tier-badge-pill.tier-num { background: var(--navy-mid); color: white; }
+    .tier-badge-pill.tier-entry { background: #555; color: white; }
+    .tier-badge-pill.tier-popular { background: #2C7A3A; color: white; }
+    .tier-badge-pill.tier-gold { background: var(--gold); color: var(--navy); }
+    .tier-card .tier-brand {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      color: rgba(255,255,255,0.35);
+      text-transform: uppercase;
+      margin-bottom: 1px;
+    }
+    .tier-card .tier-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: 0.03em;
+      border-bottom: 2px solid var(--gold);
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+    }
+    .tier-card ul {
+      list-style: none;
+      padding: 0;
+    }
+    .tier-card ul li {
+      font-size: 0.73rem;
+      color: rgba(255,255,255,0.78);
+      padding: 3px 0;
+      padding-left: 16px;
+      position: relative;
+      line-height: 1.4;
+    }
+    .tier-card ul li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--gold-light);
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+    .tier-card.selected {
+      border-color: var(--gold-light);
+      box-shadow: 0 0 0 1px var(--gold-light);
+    }
+    .tier-card.selected .tier-name { color: var(--gold-light); }
+
+    /* ─── Package Purchased ─── */
+    .pkg-select {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+    .pkg-option {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border: 2px solid var(--border);
+      border-radius: 3px;
+      cursor: pointer;
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      color: var(--mid-gray);
+      transition: all 0.2s;
+    }
+    .pkg-option input[type="radio"] { display: none; }
+    .pkg-option.selected {
+      border-color: var(--gold);
+      color: var(--navy);
+      background: var(--gold-pale);
+      font-weight: 600;
+    }
+
+    /* ─── Products Table ─── */
+    .products-table-wrap {
+      overflow-x: auto;
+      margin-bottom: 12px;
+    }
+    .products-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+    }
+    .products-table thead tr {
+      background: var(--navy);
+      color: var(--white);
+    }
+    .products-table thead th {
+      padding: 9px 12px;
+      text-align: left;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      border-bottom: 2px solid var(--gold);
+    }
+    .products-table tbody tr {
+      border-bottom: 1px solid var(--border);
+    }
+    .products-table tbody tr:nth-child(even) {
+      background: #FAFAFA;
+    }
+    .products-table tbody tr:hover {
+      background: var(--gold-pale);
+    }
+    .products-table td {
+      padding: 8px 10px;
+      vertical-align: middle;
+    }
+    .products-table td input[type="text"] {
+      border: none;
+      border-bottom: 1px solid transparent;
+      background: transparent;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.82rem;
+      color: var(--charcoal);
+      width: 100%;
+      padding: 2px 3px;
+      transition: border-color 0.2s;
+    }
+    .products-table td input[type="text"]:focus {
+      outline: none;
+      border-bottom-color: var(--gold);
+      background: rgba(200,150,12,0.04);
+    }
+    .coverage-ta {
+      border: none;
+      border-bottom: 1px solid transparent;
+      background: transparent;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.82rem;
+      color: var(--charcoal);
+      width: 100%;
+      padding: 4px 3px;
+      resize: vertical;
+      overflow-y: auto;
+      line-height: 1.5;
+      display: block;
+      word-wrap: break-word;
+      box-sizing: border-box;
+      transition: border-color 0.2s;
+    }
+    .coverage-ta:focus {
+      outline: none;
+      border-bottom-color: var(--gold);
+      background: rgba(200,150,12,0.04);
+    }
+    .products-table td {
+      vertical-align: top;
+      padding: 8px 10px;
+    }
+    .products-table td input[type="date"] {
+      border: none;
+      border-bottom: 1px solid transparent;
+      background: transparent;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.78rem;
+      color: var(--charcoal);
+      padding: 2px 3px;
+      transition: border-color 0.2s;
+    }
+    .products-table td input[type="date"]:focus {
+      outline: none;
+      border-bottom-color: var(--gold);
+    }
+    .products-table td input[type="checkbox"] {
+      accent-color: var(--navy);
+      width: 14px;
+      height: 14px;
+      cursor: pointer;
+    }
+    .products-table .col-product { width: 26%; }
+    .products-table .col-coverage { width: 34%; }
+    .products-table .col-tier { width: 14%; font-size: 0.72rem; color: var(--mid-gray); }
+    .products-table .col-na { width: 6%; text-align: center; }
+    .products-table .col-date { width: 14%; }
+    .products-table .col-del { width: 6%; text-align: center; }
+
+    .del-row-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #ccc;
+      font-size: 1rem;
+      line-height: 1;
+      padding: 2px 4px;
+      border-radius: 3px;
+      transition: all 0.15s;
+    }
+    .del-row-btn:hover { color: var(--red); background: rgba(139,28,28,0.08); }
+
+    .add-row-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 16px;
+      background: var(--navy);
+      color: var(--gold);
+      border: none;
+      border-radius: 3px;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-top: 10px;
+    }
+    .add-row-btn:hover { background: var(--navy-mid); }
+
+    /* ─── Notes Area ─── */
+    .notes-label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+    .notes-textarea {
+      width: 100%;
+      min-height: 70px;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 10px 12px;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.85rem;
+      color: var(--charcoal);
+      resize: vertical;
+      transition: border-color 0.2s;
+    }
+    .notes-textarea:focus {
+      outline: none;
+      border-color: var(--gold);
+    }
+
+    /* ─── Instruction note ─── */
+    .table-note {
+      font-size: 0.72rem;
+      color: var(--mid-gray);
+      font-style: italic;
+      margin-bottom: 10px;
+    }
+
+    .terms-page .cert-body {
+      padding-bottom: 28px;
+    }
+    .terms-title {
+      font-family: 'Oswald', sans-serif;
+      color: var(--gold);
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-bottom: 2px solid var(--gold);
+      padding-bottom: 8px;
+      margin-bottom: 16px;
+    }
+    .terms-section {
+      margin-bottom: 16px;
+    }
+    .terms-section h3 {
+      font-family: 'Oswald', sans-serif;
+      color: var(--navy);
+      font-size: 0.86rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .terms-section p,
+    .terms-section li {
+      font-size: 0.78rem;
+      line-height: 1.55;
+      color: #444;
+    }
+    .terms-section ul,
+    .terms-section ol {
+      padding-left: 20px;
+    }
+    .terms-section li {
+      margin-bottom: 5px;
+    }
+    .validation-error {
+      border-color: var(--red) !important;
+      box-shadow: 0 0 0 2px rgba(139,28,28,0.08);
+    }
+    .validation-message {
+      display: none;
+      margin: 0 auto 18px;
+      max-width: var(--page-width);
+      background: #FFF3F3;
+      border: 1px solid rgba(139,28,28,0.35);
+      border-left: 4px solid var(--red);
+      color: var(--red);
+      padding: 12px 16px;
+      font-size: 0.86rem;
+      line-height: 1.45;
+      font-weight: 700;
+    }
+
+    /* ─────────────────────────────────────── */
+    /* ─── PRINT STYLES ─── */
+    /* ─────────────────────────────────────── */
+    @media print {
+      body {
+        background: white;
+        padding: 0;
+      }
+      #toolbar { display: none !important; }
+      .validation-message { display: none !important; }
+      .page-wrapper {
+        max-width: 100%;
+        margin: 0;
+        gap: 0;
+      }
+      .cert-card {
+        box-shadow: none;
+        page-break-after: always;
+      }
+      .cert-card:last-child {
+        page-break-after: auto;
+      }
+      .del-row-btn { display: none !important; }
+      .add-row-btn { display: none !important; }
+      .sig-clear-btn { display: none !important; }
+      .sig-canvas-label { display: none; }
+      .table-note { display: none; }
+      .tier-card.t1 { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .tier-card.t2 { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .tier-card.t3 { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .products-table thead tr { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+      #officialStamp.stamp-active {
+        opacity: 1 !important;
+        transform: scale(1) rotate(-4deg) !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════ -->
+<!--  TOOLBAR                               -->
+<!-- ══════════════════════════════════════ -->
+<div id="toolbar">
+  <span class="toolbar-title">Sturgeon Shield™ — Certificate Form</span>
+  <button class="tb-btn secondary" onclick="addProductRow()">+ Add Product Row</button>
+  <button class="tb-btn secondary" onclick="clearAllSignatures()">Clear Signatures</button>
+  <button class="tb-btn primary" onclick="validateAndPrint()">⎙ Print / Save PDF</button>
+</div>
+
+<div class="validation-message" id="validationMessage"></div>
+
+<!-- ══════════════════════════════════════ -->
+<!--  PAGE 1 — CERTIFICATE                  -->
+<!-- ══════════════════════════════════════ -->
+<div class="page-wrapper">
+<div class="cert-card" id="page1">
+
+  <!-- Header -->
+  <div class="cert-header">
+    <div class="cert-header-left">
+      <h1>STURGEON SHIELD™</h1>
+      <div class="subtitle">Vehicle Protection Certificate</div>
+    </div>
+    <div class="cert-header-right">
+      <div class="dealer-logo-area">
+        <img src="sturgeon-logo.png" alt="Sturgeon Chrysler Dodge Jeep Ram"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="logo-fallback" style="display:none;flex-direction:column;align-items:flex-end;">
+          <div style="font-family:'Oswald',sans-serif;font-size:1.3rem;font-weight:700;color:var(--navy);letter-spacing:0.12em;">STURGEON</div>
+          <div style="font-size:0.55rem;letter-spacing:0.14em;color:var(--mid-gray);text-transform:uppercase;">Chrysler · Dodge · Jeep · Ram</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Certificate Body -->
+  <div class="cert-body">
+
+    <!-- Certificate Number Row -->
+    <div class="cert-num-row">
+      <div class="cert-field-group">
+        <label>Certificate # <span style="font-weight:300;color:var(--mid-gray)">(SS &amp; last 6 of VIN)</span>:</label>
+        <div class="cert-num-display" id="certNumDisplay">SS____________</div>
+      </div>
+      <div class="cert-field-group">
+        <label>Issuing Date:</label>
+        <input type="date" id="issuingDate" onchange="setDefaultExpiry(this.value)">
+      </div>
+      <div class="cert-field-group">
+        <label>Expiry Date:</label>
+        <input type="date" id="expiryDate">
+      </div>
+    </div>
+
+    <!-- Vehicle & Customer Info -->
+    <div class="section-title">Vehicle &amp; Customer Information</div>
+
+    <div class="field-grid cols-1">
+      <div class="form-field">
+        <label>Customer Name</label>
+        <input type="text" id="customerName" placeholder="Full legal name">
+      </div>
+    </div>
+
+    <div class="field-grid cols-1" style="margin-top:12px;">
+      <div class="form-field">
+        <label>Address</label>
+        <input type="text" id="address" placeholder="Street address">
+      </div>
+    </div>
+
+    <div class="field-grid cols-2" style="margin-top:12px;">
+      <div class="form-field">
+        <label>City / Province / Postal</label>
+        <input type="text" id="cityProvPostal" placeholder="e.g. Legal, AB  T0G 1L0">
+      </div>
+      <div class="form-field">
+        <label>Phone</label>
+        <input type="tel" id="phone" placeholder="(780) 000-0000">
+      </div>
+    </div>
+
+    <div class="field-grid cols-2" style="margin-top:12px;">
+      <div class="form-field">
+        <label>Year / Make</label>
+        <input type="text" id="yearMake" placeholder="e.g. 2024 Dodge">
+      </div>
+      <div class="form-field">
+        <label>Model</label>
+        <input type="text" id="model" placeholder="e.g. Ram 1500 Laramie">
+      </div>
+    </div>
+
+    <div class="field-grid cols-1" style="margin-top:12px;">
+      <div class="form-field">
+        <label>VIN</label>
+        <input type="text" id="vinField" placeholder="17-character VIN" maxlength="17"
+               oninput="updateCertNum(this.value)" style="text-transform:uppercase; letter-spacing:0.08em;">
+      </div>
+    </div>
+
+    <div class="field-grid cols-2" style="margin-top:12px;">
+      <div class="form-field">
+        <label>Colour / Trim</label>
+        <input type="text" id="colourTrim" placeholder="e.g. Granite Crystal / Sport">
+      </div>
+      <div class="form-field">
+        <label>Odometer at Application (km)</label>
+        <input type="number" id="odometer" placeholder="e.g. 12">
+      </div>
+    </div>
+
+    <div class="field-grid cols-2" style="margin-top:12px;">
+      <div class="form-field">
+        <label>Vehicle Type</label>
+        <div class="radio-group">
+          <label><input type="radio" name="vehicleType" value="new"> New</label>
+          <label><input type="radio" name="vehicleType" value="preowned"> Pre-Owned</label>
+        </div>
+      </div>
+      <div class="form-field">
+        <label>Delivery / Service Date</label>
+        <input type="date" id="deliveryDate">
+      </div>
+    </div>
+
+    <!-- Acknowledgement & Signatures -->
+    <hr class="divider">
+    <div class="section-title">Acknowledgement &amp; Signatures</div>
+
+    <p class="ack-text">
+      By signing below, the Customer confirms that the Sturgeon Shield™ protection services listed in this Certificate
+      were applied to their vehicle at or before delivery, that the applicable package and add-ons have been identified,
+      that the terms and conditions have been explained to them, and that they agree to be bound by its conditions. The
+      Dealer representative confirms authorization to issue this Certificate on behalf of Sturgeon Chrysler Dodge Jeep Ram.
+    </p>
+
+    <div class="sig-columns">
+
+      <!-- Customer -->
+      <div class="sig-block">
+        <h4>Customer Acknowledgement</h4>
+        <p>I have read and agree to the terms and conditions of this Certificate.</p>
+        <div class="sig-canvas-wrap">
+          <canvas id="sigCanvas1" width="350" height="90"></canvas>
+          <span class="sig-canvas-label">Sign here</span>
+        </div>
+        <button class="sig-clear-btn" onclick="clearSig(1)">Clear signature</button>
+        <div class="sig-fields">
+          <div class="form-field">
+            <label>Print Full Name</label>
+            <input type="text" id="custPrintName" placeholder="">
+          </div>
+          <div class="form-field">
+            <label>Date</label>
+            <input type="date" id="custSigDate">
+          </div>
+        </div>
+      </div>
+
+      <!-- Dealer -->
+      <div class="sig-block">
+        <h4>Dealer Authorization</h4>
+        <p>Issued on behalf of Sturgeon Chrysler Dodge Jeep Ram.</p>
+        <div class="sig-canvas-wrap">
+          <canvas id="sigCanvas2" width="350" height="90"></canvas>
+          <span class="sig-canvas-label">Authorized signature</span>
+        </div>
+        <button class="sig-clear-btn" onclick="clearSig(2)">Clear signature</button>
+        <div class="sig-fields">
+          <div class="form-field">
+            <label>Print Name / Title</label>
+            <input type="text" id="dealerPrintName" placeholder="">
+          </div>
+          <div class="form-field">
+            <label>Date</label>
+            <input type="date" id="dealerSigDate">
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end sig-columns -->
+
+    <!-- Official Stamp -->
+    <div class="stamp-wrap">
+      <svg id="officialStamp" width="150" height="150" viewBox="0 0 150 150"
+           xmlns="http://www.w3.org/2000/svg" aria-label="Official Stamp">
+
+        <!-- Outer ring -->
+        <circle cx="75" cy="75" r="72" fill="none" stroke="#1A2035" stroke-width="4" opacity="0.85"/>
+        <circle cx="75" cy="75" r="64" fill="none" stroke="#1A2035" stroke-width="1.5" opacity="0.6"/>
+
+        <!-- Circular text path -->
+        <defs>
+          <path id="topArc" d="M 15,75 A 60,60 0 0,1 135,75"/>
+          <path id="botArc" d="M 20,82 A 60,60 0 0,0 130,82"/>
+        </defs>
+        <text font-family="Oswald, sans-serif" font-size="9.5" font-weight="600"
+              fill="#1A2035" letter-spacing="2.8" opacity="0.9">
+          <textPath href="#topArc" startOffset="2%">STURGEON CHRYSLER DODGE JEEP RAM</textPath>
+        </text>
+        <text font-family="Oswald, sans-serif" font-size="8.5" font-weight="500"
+              fill="#1A2035" letter-spacing="3.5" opacity="0.8">
+          <textPath href="#botArc" startOffset="16%">LEGAL, ALBERTA • CANADA</textPath>
+        </text>
+
+        <!-- Inner circle background -->
+        <circle cx="75" cy="75" r="44" fill="#1A2035" opacity="0.08"/>
+        <circle cx="75" cy="75" r="44" fill="none" stroke="#C8960C" stroke-width="1.5" opacity="0.7"/>
+
+        <!-- Shield icon (simple) -->
+        <g transform="translate(75,57)">
+          <path d="M0,-16 L12,-10 L12,4 Q12,14 0,20 Q-12,14 -12,4 L-12,-10 Z"
+                fill="#C8960C" opacity="0.9"/>
+          <path d="M0,-10 L7,-6 L7,3 Q7,9 0,13 Q-7,9 -7,3 L-7,-6 Z"
+                fill="white" opacity="0.85"/>
+        </g>
+
+        <!-- AUTHORIZED text -->
+        <text x="75" y="104" font-family="Oswald, sans-serif" font-size="9" font-weight="600"
+              fill="#1A2035" letter-spacing="2.5" text-anchor="middle" opacity="0.9">AUTHORIZED</text>
+
+        <!-- Stars / decorators -->
+        <text x="28" y="79" font-size="7" fill="#C8960C" opacity="0.7">★</text>
+        <text x="117" y="79" font-size="7" fill="#C8960C" opacity="0.7">★</text>
+
+      </svg>
+    </div>
+
+  </div><!-- end cert-body -->
+
+  <!-- Footer -->
+  <div class="cert-footer">
+    <p><strong>Sturgeon Chrysler Dodge Jeep Ram</strong> · 4618 - 50th Ave., Legal, AB  T0G 1L0 · sturgeondodge.ca</p>
+    <p><em>Sturgeon Shield™ is a dealer-issued service warranty. This Certificate is not an insurance product. Retain for the life of your ownership.</em></p>
+  </div>
+
+</div><!-- end page1 -->
+
+
+<!-- ══════════════════════════════════════ -->
+<!--  PAGE 2 — PACKAGE & PRODUCTS           -->
+<!-- ══════════════════════════════════════ -->
+<div class="cert-card" id="page2">
+
+  <div class="cert-body">
+
+    <div class="section-title" style="margin-top:4px;">Sturgeon Shield™ Package Selected</div>
+
+    <!-- Tier Cards -->
+    <div class="tier-cards" id="tierCards">
+
+      <div class="tier-card t1" id="tierCard1" onclick="selectTier(1)">
+        <input type="radio" name="tier" value="1" id="tier1">
+        <div class="tier-badge">
+          <span class="tier-badge-pill tier-num">Tier 1</span>
+          <span class="tier-badge-pill tier-entry">Entry Level</span>
+        </div>
+        <div class="tier-brand">Sturgeon Shield™</div>
+        <div class="tier-name">ESSENTIALS</div>
+        <ul>
+          <li>Clay Bar Decontamination Treatment</li>
+          <li>Total Clean Prep Spray</li>
+          <li>Graphene Paint Armour</li>
+          <li>Leather/Vinyl Interior Shield</li>
+          <li>Fabric Protection (Carpets, Trunk, Headliner)</li>
+          <li>Amber Based Solvent Rust Inhibitor</li>
+        </ul>
+      </div>
+
+      <div class="tier-card t2" id="tierCard2" onclick="selectTier(2)">
+        <input type="radio" name="tier" value="2" id="tier2">
+        <div class="tier-badge">
+          <span class="tier-badge-pill tier-num">Tier 2</span>
+          <span class="tier-badge-pill tier-popular">Most Popular</span>
+        </div>
+        <div class="tier-brand">Sturgeon Shield™</div>
+        <div class="tier-name">ESSENTIALS+</div>
+        <ul>
+          <li>Everything in Essentials</li>
+          <li>Ceramic PRO 10H Shield</li>
+          <li>Windshield &amp; Sideview Mirrors Ceramic Coating</li>
+          <li>Enhanced Rain &amp; Chip Resistance</li>
+          <li>Rust Inhibitor Spray</li>
+        </ul>
+      </div>
+
+      <div class="tier-card t3" id="tierCard3" onclick="selectTier(3)">
+        <input type="radio" name="tier" value="3" id="tier3">
+        <div class="tier-badge">
+          <span class="tier-badge-pill tier-num">Tier 3</span>
+          <span class="tier-badge-pill tier-gold">Total Protection</span>
+        </div>
+        <div class="tier-brand">Sturgeon Shield™</div>
+        <div class="tier-name">TOTAL CONTROL</div>
+        <ul>
+          <li>Everything in Essentials+</li>
+          <li>Electronic Rust Inhibitor (OBD Plug-in)</li>
+          <li>5-Year Interior Rip / Tear / Burn Warranty</li>
+          <li>Paint Defect Coverage</li>
+          <li>Rust &amp; Corrosion Coverage (10yr New / 5yr Used)</li>
+          <li>Undercoating</li>
+          <li>Tire &amp; Rim Protection</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Package Purchased -->
+    <div class="section-title">Package Purchased</div>
+    <div class="pkg-select" id="pkgSelect">
+      <label class="pkg-option" id="pkg-sa" onclick="selectPkg('SA')">
+        <input type="radio" name="pkg" value="SA"> Stand Alone
+      </label>
+      <label class="pkg-option" id="pkg-ess" onclick="selectPkg('Essentials')">
+        <input type="radio" name="pkg" value="Essentials"> Essentials
+      </label>
+      <label class="pkg-option" id="pkg-essp" onclick="selectPkg('Essentials+')">
+        <input type="radio" name="pkg" value="Essentials+"> Essentials+
+      </label>
+      <label class="pkg-option" id="pkg-tc" onclick="selectPkg('Total Control')">
+        <input type="radio" name="pkg" value="Total Control"> Total Control
+      </label>
+    </div>
+
+    <!-- Products & Services Table -->
+    <div class="section-title">Products &amp; Services Applied <span style="font-weight:300;text-transform:none;font-family:'Lato';font-size:0.75rem;letter-spacing:0;color:var(--mid-gray)">(Stand Alone (SA) or Tier)</span></div>
+    <p class="table-note">Mark N/A for items not included in the selected package. Record date applied for all active items. Click any cell to edit. Use the toolbar to add new rows.</p>
+
+    <div class="products-table-wrap">
+      <table class="products-table" id="productsTable">
+        <thead>
+          <tr>
+            <th class="col-product">Product Applied</th>
+            <th class="col-coverage">Coverage Area / Purpose</th>
+            <th class="col-tier">Tier / SA</th>
+            <th class="col-na">N/A</th>
+            <th class="col-date">Date Applied</th>
+            <th class="col-del"></th>
+          </tr>
+        </thead>
+        <tbody id="productsBody">
+          <!-- Rows injected by JS -->
+        </tbody>
+      </table>
+    </div>
+    <button class="add-row-btn" onclick="addProductRow()">+ Add Row</button>
+
+    <!-- Notes -->
+    <div style="margin-top: 28px;">
+      <div class="notes-label">Additional Add-Ons / Notes:</div>
+      <textarea class="notes-textarea" id="addOnNotes" placeholder="List any additional add-on products or relevant notes here…"></textarea>
+    </div>
+
+  </div><!-- end cert-body -->
+
+  <!-- Footer -->
+  <div class="cert-footer">
+    <p><strong>Sturgeon Chrysler Dodge Jeep Ram</strong> · 4618 - 50th Ave., Legal, AB  T0G 1L0 · sturgeondodge.ca</p>
+    <p><em>Sturgeon Shield™ is a dealer-issued service warranty. This Certificate is not an insurance product. Retain for the life of your ownership.</em></p>
+  </div>
+
+</div><!-- end page2 -->
+
+<div class="cert-card terms-page" id="page3">
+  <div class="cert-body">
+    <div class="terms-title">Coverage &mdash; What Is Protected</div>
+
+    <div class="terms-section">
+      <p>This Certificate constitutes a dealer-backed service warranty issued directly by Sturgeon Chrysler Dodge Jeep Ram ("the Dealer"). It is not a contract of insurance. Coverage is provided by way of minor repair or re-application of the protection products described herein, in respect of reasonable and expected wear and tear arising from normal vehicle use. Sections below apply only to the products included in the purchased package or add-on services.</p>
+    </div>
+
+    <div class="terms-section">
+      <h3>Section A &mdash; Interior Protection (Rip &middot; Tear &middot; Burn) &mdash; Tier 3 / Total Control</h3>
+      <p>Covers reasonable and expected wear-and-tear damage to treated leather, synthetic leather, cloth, and vinyl upholstery surfaces. Included in Tier 3 (Total Control) only.</p>
+      <ul>
+        <li>Accidental rips, tears, cuts, or burns up to 5 cm (2 inches) in any direction that penetrate the surface layer of original factory-installed or factory-supplied upholstery.</li>
+        <li>Applies to front and rear seating surfaces, centre console lid, door panel fabric/leather inserts, and headrests where the Leather Interior Shield was applied.</li>
+        <li>Qualified damage will be repaired or, if the coating has failed to protect as warranted, the affected surface will be re-treated at no charge.</li>
+        <li>Coverage Term: 5 years from delivery date.</li>
+        <li>Maximum of three (3) service claims per 12-month period.</li>
+      </ul>
+    </div>
+
+    <div class="terms-section">
+      <h3>Section B &mdash; Exterior Paint Protection (Fading &amp; UV Degradation) &mdash; All Tiers</h3>
+      <p>Covers visible paint fading and UV-related colour degradation on treated exterior panels. Applicable to all Sturgeon Shield tiers.</p>
+      <ul>
+        <li>Visible fading, chalking, or measurable loss of colour depth on factory-painted exterior body panels attributable to normal UV radiation and atmospheric exposure.</li>
+        <li>If the applied graphene or ceramic coating is found to have failed to provide its warranted UV-barrier and hydrophobic protection under normal use, the Dealer will re-apply the coating to affected panels at no charge.</li>
+        <li>Tier 1 (Essentials): 5+ years &mdash; Graphene Paint Armour coating.</li>
+        <li>Tier 2 (Essentials+): Permanent &mdash; Ceramic PRO 10H Shield provides long-term paint defect and UV coverage.</li>
+        <li>Tier 3 (Total Control): 10 years for new vehicles / 5 years for pre-owned &mdash; inclusive Paint Defect Coverage.</li>
+        <li>Applies to accessible, factory-painted vertical and horizontal sheet metal body panels, glass, and treated trim.</li>
+        <li>Does not replace or supplement the OEM factory paint warranty provided by Stellantis Canada.</li>
+        <li>Maximum of two (2) service claims per 12-month period.</li>
+      </ul>
+    </div>
+
+    <div class="terms-section">
+      <h3>Section C &mdash; Rust &amp; Corrosion Protection</h3>
+      <p>Covers surface rust and corrosion prevention on treated panels. Applicable to Tier 3 (Total Control) and/or when rust protection add-ons are purchased.</p>
+      <ul>
+        <li>Electronic Rust Inhibitor (Tier 3): The OBD-II plug-in module generates a repetitive pulsing surface current, which reduces metal oxidation across the vehicle's sheet metal panels 24/7.</li>
+        <li>Rust Inhibitor Spray: Solvent-based amber product injected into inner cavities, door panels, and crevices. Bonds to metal, will not drip, displaces existing moisture. No drilling required. Guarantees against rust perforation occurring from the inside out.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="cert-footer">
+    <p><strong>Sturgeon Chrysler Dodge Jeep Ram</strong> Â· 4618 - 50th Ave., Legal, AB  T0G 1L0 Â· sturgeondodge.ca</p>
+    <p><em>Sturgeon Shieldâ„¢ is a dealer-issued service warranty. This Certificate is not an insurance product. Retain for the life of your ownership.</em></p>
+  </div>
+</div><!-- end page3 -->
+
+<div class="cert-card terms-page" id="page4">
+  <div class="cert-body">
+    <div class="terms-title">Terms &amp; Conditions</div>
+
+    <div class="terms-section">
+      <ul>
+        <li>This coverage is complementary to, and does not replace, the Stellantis Canada Anti-Corrosion Perforation Limited Warranty (5 years / 160,000 km on all body sheet metal).</li>
+        <li>Coverage Term: 7 years for new vehicles / 5 years for pre-owned (Tier 3).</li>
+        <li>Maximum of two (2) service claims per 12-month period.</li>
+      </ul>
+    </div>
+
+    <div class="terms-section">
+      <h3>Section D &mdash; Undercoating Protection</h3>
+      <ul>
+        <li>The underbody of the vehicle is fully coated with a heavy-bodied, pliable solvent-based amber formula that seals against road salt, gravel impact, moisture, and debris.</li>
+        <li>The coating flows into seams and crevices and will not crack, peel, or chip under normal operating conditions.</li>
+        <li>Reduces road noise by up to 50% and provides thermal insulation against extreme hot and cold temperatures.</li>
+        <li>If the undercoating is found to have failed to adhere or provide protection under normal use within the coverage term, the Dealer will reapply the affected section at no charge.</li>
+        <li>Coverage Term: 5 years or 160,000 km from delivery date, whichever comes first.</li>
+        <li>Maximum of one (1) underbody service claim per 12-month period.</li>
+      </ul>
+    </div>
+
+    <div class="terms-section">
+      <h3>General Terms &amp; Conditions</h3>
+      <ol>
+        <li><strong>Service Warranty &mdash; Not Insurance.</strong> This Certificate is a service warranty issued by Sturgeon Chrysler Dodge Jeep Ram (the "Dealer") as the sole obligor. It is not a contract of insurance and is not underwritten by any insurer. Coverage is limited to the repair or re-application of protection products consistent with minor repairs for reasonable and expected wear and tear, as contemplated under Alberta Interpretation Bulletin 05-2024 (Revised December 23, 2024) issued by the Alberta Superintendent of Insurance.</li>
+        <li><strong>Coverage Territory.</strong> Coverage applies to vehicles ordinarily kept and maintained within Canada. Claims must be presented to the Dealer at 4618 - 50th Ave., Legal, AB T0G 1L0.</li>
+        <li><strong>Maintenance Requirements.</strong> To maintain coverage: (a) wash the vehicle regularly using pH-neutral automotive soap; (b) avoid abrasive compounds, harsh chemicals, or direct high-pressure washing at panel edges; (c) follow the Dealer's recommended coating maintenance schedule (available on request); and (d) retain all maintenance records.</li>
+        <li><strong>Transferability.</strong> This Certificate is non-transferable. No refunds.</li>
+        <li><strong>Claim Limits &amp; Remedies.</strong> The Dealer's sole obligation is to repair or re-apply the applicable protection product to the affected surface. The Dealer is not liable for incidental, consequential, or indirect damages including loss of use. The Dealer's maximum aggregate liability shall not exceed the original retail cost of the protection package or services purchased.</li>
+        <li><strong>Governing Law.</strong> This Certificate is governed by the laws of the Province of Alberta. Any unresolved disputes shall be subject to the exclusive jurisdiction of the courts of Alberta.</li>
+      </ol>
+    </div>
+
+    <div class="terms-section">
+      <h3>Exclusions &mdash; What Is Not Covered</h3>
+      <p>This Certificate does not cover damage, loss, or failure arising from or related to any of the following:</p>
+      <ul>
+        <li>Damage from collision, impact, vandalism, theft, fire, flood, hail, or any other external or fortuitous peril.</li>
+        <li>Use of non-approved cleaning products, abrasive polishes, industrial solvents, or improper washing or detailing techniques.</li>
+        <li>Rust perforation (rust-through, creating a hole in sheet metal) &mdash; covered separately under the Stellantis Canada Anti-Corrosion Perforation Limited Warranty.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="cert-footer">
+    <p><strong>Sturgeon Chrysler Dodge Jeep Ram</strong> Â· 4618 - 50th Ave., Legal, AB  T0G 1L0 Â· sturgeondodge.ca</p>
+    <p><em>Sturgeon Shieldâ„¢ is a dealer-issued service warranty. This Certificate is not an insurance product. Retain for the life of your ownership.</em></p>
+  </div>
+</div><!-- end page4 -->
+
+<div class="cert-card terms-page" id="page5">
+  <div class="cert-body">
+    <div class="terms-title">Exclusions &amp; Legal Disclosure</div>
+
+    <div class="terms-section">
+      <h3>Additional Exclusions</h3>
+      <ul>
+        <li>Pre-existing damage, rust, paint defects, chips, or scratches present at the time of delivery or product application.</li>
+        <li>Surfaces where factory paint or clearcoat has been compromised by accident repair, aftermarket modification, paint correction, or third-party product application after delivery.</li>
+        <li>Normal paint swirling, water spots, or minor surface marring from improper washing &mdash; not attributable to coating failure.</li>
+        <li>Interior damage exceeding 5 cm in any direction; deliberate cuts, burns from intentional misuse, or damage caused by sharp tools or weapons.</li>
+        <li>Damage caused by pets, sharp objects, deliberate misuse, or commercial use of the vehicle.</li>
+        <li>Vehicles used for ridesharing, taxi, delivery, emergency services, racing, or other commercial purposes.</li>
+        <li>Vehicles declared a total loss, salvaged, or with an altered or undisclosed VIN.</li>
+        <li>Costs for rental vehicles, towing, storage, or any loss of use during a service claim.</li>
+        <li>Claims submitted after expiry of the applicable coverage term (time or kilometre limit, whichever occurs first).</li>
+        <li>Coverage sections not included in the purchased package tier or as a confirmed add-on service on this Certificate.</li>
+      </ul>
+    </div>
+
+    <div class="terms-section">
+      <h3>How To Make A Claim</h3>
+      <ul>
+        <li>Contact Sturgeon Chrysler Dodge Jeep Ram Service Department at sturgeondodge.ca or by calling the dealership to schedule a claim inspection.</li>
+        <li>Present this Certificate along with a valid government-issued photo ID and proof of vehicle ownership.</li>
+        <li>Describe the damage or coating failure. The service advisor will assess whether it falls within the coverage criteria for the purchased tier and add-ons.</li>
+        <li>If the claim is approved, the Dealer will perform the repair or re-application at no charge, subject to the applicable claim limits.</li>
+        <li>Unauthorized repairs or re-applications performed by third parties will not be reimbursed and may void remaining coverage.</li>
+      </ul>
+    </div>
+
+    <div class="terms-section">
+      <h3>Legal Disclosure &mdash; Alberta &amp; British Columbia</h3>
+      <p><strong>IMPORTANT &mdash; PLEASE READ CAREFULLY</strong></p>
+      <p>This Vehicle Protection Certificate is a service warranty contract between the certificate holder and Sturgeon Chrysler Dodge Jeep Ram. It is NOT a contract of insurance, is NOT underwritten by a licensed insurer, and is NOT subject to the Alberta Insurance Act (R.S.A. 2000, c. I-3) or the British Columbia Insurance Act (R.S.B.C. 2012, c. 1).</p>
+      <p>This Certificate is structured to fall within the motor vehicle service plan carve-out under Alberta Interpretation Bulletin 05-2024 (Revised, December 23, 2024) issued by the Alberta Superintendent of Insurance, which exempts service plans providing minor repairs for reasonable and expected wear and tear from classification as insurance. Covered services expressly referenced in that Bulletin include scuff, ding, chip, cut, tear, and scratch repairs (interior or exterior).</p>
+      <p>Coverage under this Certificate is provided solely from the Dealer's own resources as a service obligation arising from its workmanship in applying the listed protection products. No third-party insurer is involved.</p>
+      <p>This Certificate does not limit, replace, or affect any statutory warranty rights available under the Alberta Consumer Protection Act, the Alberta Sale of Goods Act, or any other applicable provincial consumer protection legislation.</p>
+      <p><strong>Note for BC-Registered Vehicles:</strong> Coverage under this Certificate is limited to wear-and-tear service and does not constitute automobile insurance as defined under British Columbia law or BCFSA Regulatory Statement No. 24-008 (April 2024).</p>
+    </div>
+  </div>
+
+  <div class="cert-footer">
+    <p><strong>Sturgeon Chrysler Dodge Jeep Ram</strong> Â· 4618 - 50th Ave., Legal, AB  T0G 1L0 Â· sturgeondodge.ca</p>
+    <p><em>Sturgeon Shieldâ„¢ is a dealer-issued service warranty. This Certificate is not an insurance product. Retain for the life of your ownership.</em></p>
+  </div>
+</div><!-- end page5 -->
+</div><!-- end page-wrapper -->
+
+
+<!-- ══════════════════════════════════════ -->
+<!--  JAVASCRIPT                            -->
+<!-- ══════════════════════════════════════ -->
+<script>
+// ─── Auto-grow textarea helper ──────────────────────────────────────────────
+function autoGrow(el) {
+  el.style.height = 'auto';
+  requestAnimationFrame(() => {
+    el.style.height = el.scrollHeight + 'px';
+  });
+}
+
+// ─── Default product rows ───────────────────────────────────────────────────
+const DEFAULT_PRODUCTS = [
+  {
+    product: 'Graphene Paint Armour (SiO2 NanoCoating)',
+    coverage: 'Exterior painted panels — UV barrier, self-healing, hydrophobic protection',
+    tier: 'TIER 1/2/3 / SA',
+    na: false,
+    date: ''
+  },
+  {
+    product: 'Leather Interior Shield (Graphene Ceramic)',
+    coverage: 'All treated leather/vinyl/fabric — stain, UV, spill & rip/tear/burn protection',
+    tier: 'TIER 1/2/3 / SA',
+    na: false,
+    date: ''
+  },
+  {
+    product: 'Ceramic PRO 10H Shield',
+    coverage: 'Exterior panels & trim — 10H permanent hardness, candy gloss',
+    tier: 'TIER 2/3 / SA',
+    na: false,
+    date: ''
+  },
+  {
+    product: 'Windshield Ceramic Coating',
+    coverage: 'Glass surfaces — hydrophobic, rain-repelling, clarity treatment',
+    tier: 'TIER 2/3 / SA',
+    na: false,
+    date: ''
+  },
+  {
+    product: 'Rust Inhibitor Spray',
+    coverage: 'Inner cavities & door panels — solvent-based amber, moisture displacement',
+    tier: 'TIER 2/3 / SA',
+    na: false,
+    date: ''
+  },
+  {
+    product: 'Electronic Rust Inhibitor',
+    coverage: 'OBD-II plug-in module — 24/7 pulsing current corrosion protection',
+    tier: 'Tier 3 / SA',
+    na: false,
+    date: ''
+  },
+  {
+    product: 'Undercoating',
+    coverage: 'Full underbody — solvent-based amber, sound deadening, road salt barrier',
+    tier: 'Tier 3 / SA',
+    na: false,
+    date: ''
+  }
+];
+
+// ─── Render product table ────────────────────────────────────────────────────
+function renderProducts(rows) {
+  const tbody = document.getElementById('productsBody');
+  tbody.innerHTML = '';
+  rows.forEach((row, i) => addRowToTable(row, i));
+}
+
+function addRowToTable(row, idx) {
+  const tbody = document.getElementById('productsBody');
+  const rowId = 'row_' + Date.now() + '_' + idx;
+  const tr = document.createElement('tr');
+  tr.id = rowId;
+  tr.innerHTML = `
+    <td class="col-product">
+      <input type="text" value="${escHtml(row.product)}" placeholder="Product name">
+    </td>
+    <td class="col-coverage">
+      <textarea class="coverage-ta" rows="3" placeholder="Coverage area / purpose"
+        oninput="autoGrow(this)">${escHtml(row.coverage)}</textarea>
+    </td>
+    <td class="col-tier">
+      <input type="text" value="${escHtml(row.tier)}" placeholder="e.g. TIER 2/3 / SA">
+    </td>
+    <td class="col-na" style="text-align:center;">
+      <input type="checkbox" title="Mark N/A" ${row.na ? 'checked' : ''}
+             onchange="toggleRowNA(this, '${rowId}')">
+    </td>
+    <td class="col-date">
+      <input type="date" value="${row.date || ''}">
+    </td>
+    <td class="col-del">
+      <button class="del-row-btn" onclick="deleteRow('${rowId}')" title="Remove row">✕</button>
+    </td>
+  `;
+  if (row.na) tr.style.opacity = '0.45';
+  tbody.appendChild(tr);
+}
+
+function toggleRowNA(cb, rowId) {
+  const row = document.getElementById(rowId);
+  row.style.opacity = cb.checked ? '0.45' : '1';
+}
+
+function deleteRow(rowId) {
+  const row = document.getElementById(rowId);
+  if (row) {
+    row.style.transition = 'opacity 0.2s';
+    row.style.opacity = '0';
+    setTimeout(() => row.remove(), 200);
+  }
+}
+
+function addProductRow() {
+  addRowToTable({ product: '', coverage: '', tier: '', na: false, date: '' }, Date.now());
+  // Auto-grow any new textareas
+  setTimeout(() => {
+    document.querySelectorAll('.coverage-ta').forEach(ta => autoGrow(ta));
+  }, 30);
+  document.getElementById('productsTable').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function escHtml(str) {
+  return (str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ─── Certificate number ──────────────────────────────────────────────────────
+function updateCertNum(vin) {
+  const v = vin.trim().toUpperCase();
+  const last6 = v.length >= 6 ? v.slice(-6) : v.padEnd(6, '_');
+  const display = 'SS' + last6;
+  document.getElementById('certNumDisplay').textContent = display;
+}
+
+// ─── Auto expiry (default 5 years from issuing) ─────────────────────────────
+function setDefaultExpiry(issuingVal) {
+  if (!issuingVal) return;
+  const d = new Date(issuingVal);
+  d.setFullYear(d.getFullYear() + 5);
+  const expiry = d.toISOString().split('T')[0];
+  const expiryInput = document.getElementById('expiryDate');
+  if (!expiryInput.value) expiryInput.value = expiry;
+}
+
+// ─── Tier selection ──────────────────────────────────────────────────────────
+const TIER_TO_PKG = { 1: 'Essentials', 2: 'Essentials+', 3: 'Total Control' };
+const PKG_TO_TIER = { 'Essentials': 1, 'Essentials+': 2, 'Total Control': 3 };
+
+function selectTier(t, skipPkg) {
+  [1,2,3].forEach(n => {
+    document.getElementById('tierCard' + n).classList.remove('selected');
+    document.getElementById('tier' + n).checked = false;
+  });
+  document.getElementById('tierCard' + t).classList.add('selected');
+  document.getElementById('tier' + t).checked = true;
+  // Sync package selection
+  if (!skipPkg && TIER_TO_PKG[t]) selectPkg(TIER_TO_PKG[t], true);
+}
+
+// ─── Package selection ───────────────────────────────────────────────────────
+const PKG_IDS = { 'SA': 'pkg-sa', 'Essentials': 'pkg-ess', 'Essentials+': 'pkg-essp', 'Total Control': 'pkg-tc' };
+function selectPkg(val, skipTier) {
+  Object.values(PKG_IDS).forEach(id => {
+    const option = document.getElementById(id);
+    option.classList.remove('selected');
+    option.querySelector('input').checked = false;
+  });
+  const selectedOption = document.getElementById(PKG_IDS[val]);
+  selectedOption.classList.add('selected');
+  selectedOption.querySelector('input').checked = true;
+  // Sync tier card
+  if (!skipTier) {
+    const tierNum = PKG_TO_TIER[val];
+    if (tierNum) {
+      selectTier(tierNum, true);
+    } else {
+      // Stand Alone — deselect all tier cards
+      [1,2,3].forEach(n => {
+        document.getElementById('tierCard' + n).classList.remove('selected');
+        document.getElementById('tier' + n).checked = false;
+      });
+    }
+  }
+}
+// Allow clicking the label
+document.querySelectorAll('.pkg-option').forEach(el => {
+  el.addEventListener('click', () => {
+    const val = el.querySelector('input').value;
+    selectPkg(val);
+  });
+});
+
+// ─── Signature Pads ──────────────────────────────────────────────────────────
+const sigPads = {};
+
+function initSigPad(canvasId, padKey) {
+  let canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+
+  const existingPad = sigPads[padKey];
+  const savedSignature = existingPad && existingPad.hasSignature()
+    ? existingPad.canvas.toDataURL('image/png')
+    : null;
+
+  if (existingPad) {
+    const replacement = canvas.cloneNode(true);
+    canvas.replaceWith(replacement);
+    canvas = replacement;
+  }
+
+  // DPI scaling
+  const dpr = window.devicePixelRatio || 1;
+  const rect = canvas.getBoundingClientRect();
+  canvas.width = Math.round((rect.width || 350) * dpr);
+  canvas.height = Math.round((rect.height || 90) * dpr);
+
+  const ctx = canvas.getContext('2d');
+  ctx.scale(dpr, dpr);
+  ctx.strokeStyle = '#1a2035';
+  ctx.lineWidth = 2;
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+
+  let drawing = false;
+  let hasMark = Boolean(savedSignature);
+
+  if (savedSignature) {
+    const img = new Image();
+    img.onload = () => {
+      ctx.drawImage(img, 0, 0, rect.width || 350, rect.height || 90);
+      onSignatureChange();
+    };
+    img.src = savedSignature;
+  }
+
+  function getPos(e) {
+    const r = canvas.getBoundingClientRect();
+    if (e.touches) {
+      return {
+        x: (e.touches[0].clientX - r.left),
+        y: (e.touches[0].clientY - r.top)
+      };
+    }
+    return { x: e.clientX - r.left, y: e.clientY - r.top };
+  }
+
+  canvas.addEventListener('mousedown',  e => { drawing = true; ctx.beginPath(); const p = getPos(e); ctx.moveTo(p.x, p.y); });
+  canvas.addEventListener('mousemove',  e => { if (!drawing) return; const p = getPos(e); ctx.lineTo(p.x, p.y); ctx.stroke(); hasMark = true; });
+  canvas.addEventListener('mouseup',    () => { drawing = false; onSignatureChange(); });
+  canvas.addEventListener('mouseleave', () => { drawing = false; });
+
+  canvas.addEventListener('touchstart', e => { e.preventDefault(); drawing = true; ctx.beginPath(); const p = getPos(e); ctx.moveTo(p.x, p.y); }, { passive: false });
+  canvas.addEventListener('touchmove',  e => { e.preventDefault(); if (!drawing) return; const p = getPos(e); ctx.lineTo(p.x, p.y); ctx.stroke(); hasMark = true; }, { passive: false });
+  canvas.addEventListener('touchend',   () => { drawing = false; onSignatureChange(); });
+
+  sigPads[padKey] = {
+    canvas, ctx, dpr,
+    clear: () => { ctx.clearRect(0, 0, canvas.width / dpr, canvas.height / dpr); hasMark = false; onSignatureChange(); },
+    hasSignature: () => hasMark
+  };
+}
+
+function clearSig(n) {
+  if (sigPads['sig' + n]) sigPads['sig' + n].clear();
+}
+
+function clearAllSignatures() {
+  [1, 2].forEach(n => clearSig(n));
+}
+
+function onSignatureChange() {
+  const sig1 = sigPads['sig1'] && sigPads['sig1'].hasSignature();
+  const stamp = document.getElementById('officialStamp');
+  if (sig1) {
+    if (!stamp.classList.contains('stamp-active')) {
+      stamp.classList.add('stamp-active');
+    }
+  } else {
+    stamp.classList.remove('stamp-active');
+    // Reset animation so it can play again
+    void stamp.offsetWidth;
+  }
+}
+
+// ─── Initialize on load ──────────────────────────────────────────────────────
+function clearValidationState() {
+  document.querySelectorAll('.validation-error').forEach(el => el.classList.remove('validation-error'));
+  const msg = document.getElementById('validationMessage');
+  if (msg) {
+    msg.style.display = 'none';
+    msg.textContent = '';
+  }
+}
+
+function markInvalid(el) {
+  if (el) el.classList.add('validation-error');
+}
+
+function validateCertificate() {
+  clearValidationState();
+
+  const missing = [];
+  const requiredFields = [
+    ['customerName', 'Customer Name'],
+    ['vinField', 'VIN'],
+    ['deliveryDate', 'Delivery / Service Date']
+  ];
+
+  requiredFields.forEach(([id, label]) => {
+    const field = document.getElementById(id);
+    if (!field || !field.value.trim()) {
+      missing.push(label);
+      markInvalid(field);
+    }
+  });
+
+  if (!document.querySelector('input[name="vehicleType"]:checked')) {
+    missing.push('Vehicle Type');
+    markInvalid(document.querySelector('.radio-group'));
+  }
+
+  if (!document.querySelector('input[name="pkg"]:checked')) {
+    missing.push('Package Purchased');
+    markInvalid(document.getElementById('pkgSelect'));
+  }
+
+  if (!sigPads.sig1 || !sigPads.sig1.hasSignature()) {
+    missing.push('Customer Signature');
+    markInvalid(document.getElementById('sigCanvas1').closest('.sig-canvas-wrap'));
+  }
+
+  if (!sigPads.sig2 || !sigPads.sig2.hasSignature()) {
+    missing.push('Dealer Signature');
+    markInvalid(document.getElementById('sigCanvas2').closest('.sig-canvas-wrap'));
+  }
+
+  if (!missing.length) return true;
+
+  const msg = document.getElementById('validationMessage');
+  msg.textContent = 'Complete before printing: ' + missing.join(', ') + '.';
+  msg.style.display = 'block';
+  msg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  return false;
+}
+
+function validateAndPrint() {
+  if (validateCertificate()) window.print();
+}
+
+// Initialize after the product table and canvases have layout dimensions.
+window.addEventListener('load', () => {
+  renderProducts(DEFAULT_PRODUCTS);
+
+  // Auto-grow all coverage textareas after render
+  setTimeout(() => {
+    document.querySelectorAll('.coverage-ta').forEach(ta => autoGrow(ta));
+  }, 100);
+
+  // Small delay to let canvas layout settle
+  setTimeout(() => {
+    initSigPad('sigCanvas1', 'sig1');
+    initSigPad('sigCanvas2', 'sig2');
+  }, 150);
+});
+
+// Re-init canvases on resize (debounced)
+let resizeTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    initSigPad('sigCanvas1', 'sig1');
+    initSigPad('sigCanvas2', 'sig2');
+  }, 300);
+});
+</script>
+</body>
+</html>
