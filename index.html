@@ -155,11 +155,6 @@
       max-width: 100%;
       max-height: 100%;
       object-fit: contain;
-      mix-blend-mode: multiply;
-      background: transparent;
-    }
-    .dealer-logo-area {
-      background: transparent;
     }
 
     /* ─── Cert Body ─── */
@@ -729,6 +724,135 @@
       margin-bottom: 10px;
     }
 
+    .terms-page .cert-body {
+      padding-bottom: 28px;
+    }
+    .terms-title {
+      font-family: 'Oswald', sans-serif;
+      color: var(--gold);
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-bottom: 2px solid var(--gold);
+      padding-bottom: 8px;
+      margin-bottom: 16px;
+    }
+    .terms-section {
+      margin-bottom: 16px;
+    }
+    .terms-section h3 {
+      font-family: 'Oswald', sans-serif;
+      color: var(--navy);
+      font-size: 0.86rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .terms-section p,
+    .terms-section li {
+      font-size: 0.78rem;
+      line-height: 1.55;
+      color: #444;
+    }
+    .terms-section ul,
+    .terms-section ol {
+      padding-left: 20px;
+    }
+    .terms-section li {
+      margin-bottom: 5px;
+    }
+    .validation-error {
+      border-color: var(--red) !important;
+      box-shadow: 0 0 0 2px rgba(139,28,28,0.08);
+    }
+    .validation-message {
+      display: none;
+      margin: 0 auto 18px;
+      max-width: var(--page-width);
+      background: #FFF3F3;
+      border: 1px solid rgba(139,28,28,0.35);
+      border-left: 4px solid var(--red);
+      color: var(--red);
+      padding: 12px 16px;
+      font-size: 0.86rem;
+      line-height: 1.45;
+      font-weight: 700;
+    }
+    .print-toast {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      z-index: 1200;
+      display: none;
+      gap: 14px;
+      align-items: center;
+      max-width: 440px;
+      padding: 14px 16px;
+      background: #FFFFFF;
+      border: 1px solid rgba(15,34,52,0.18);
+      border-left: 4px solid var(--gold);
+      box-shadow: 0 10px 30px rgba(15,34,52,0.22);
+      color: var(--navy);
+    }
+    .print-toast.show { display: flex; }
+    .print-toast strong {
+      display: block;
+      margin-bottom: 3px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .print-toast p {
+      margin: 0;
+      font-size: 0.82rem;
+      color: var(--mid-gray);
+      line-height: 1.35;
+    }
+    .toast-actions {
+      display: flex;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .toast-btn {
+      padding: 7px 10px;
+      border-radius: 3px;
+      border: 1px solid var(--gold);
+      font-family: 'Lato', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .toast-btn.primary {
+      background: var(--gold);
+      color: var(--navy);
+    }
+    .toast-btn.secondary {
+      background: transparent;
+      color: var(--navy);
+      border-color: rgba(15,34,52,0.28);
+    }
+    @media screen and (max-width: 640px) {
+      .print-toast {
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        max-width: none;
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .toast-actions {
+        justify-content: flex-end;
+        flex-wrap: wrap;
+      }
+      .toast-btn { flex: 1; }
+    }
+
     /* ─────────────────────────────────────── */
     /* ─── PRINT STYLES ─── */
     /* ─────────────────────────────────────── */
@@ -738,6 +862,8 @@
         padding: 0;
       }
       #toolbar { display: none !important; }
+      .validation-message { display: none !important; }
+      .print-toast { display: none !important; }
       .page-wrapper {
         max-width: 100%;
         margin: 0;
@@ -760,8 +886,7 @@
       .tier-card.t3 { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
       .products-table thead tr { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 
-      /* Show stamp on print even without animation */
-      #officialStamp {
+      #officialStamp.stamp-active {
         opacity: 1 !important;
         transform: scale(1) rotate(-4deg) !important;
       }
@@ -775,11 +900,22 @@
 <!-- ══════════════════════════════════════ -->
 <div id="toolbar">
   <span class="toolbar-title">Sturgeon Shield™ — Certificate Form</span>
-  <input type="file" id="logoFilePicker" accept="image/*" style="display:none" onchange="loadLogoFile(this)">
-  <button class="tb-btn secondary" onclick="document.getElementById('logoFilePicker').click()">🖼 Choose Logo</button>
   <button class="tb-btn secondary" onclick="addProductRow()">+ Add Product Row</button>
   <button class="tb-btn secondary" onclick="clearAllSignatures()">Clear Signatures</button>
-  <button class="tb-btn primary" onclick="window.print()">⎙ Print / Save PDF</button>
+  <button class="tb-btn danger" onclick="clearFormFields()">Clear Form</button>
+  <button class="tb-btn primary" onclick="validateAndPrint()">⎙ Print / Save PDF</button>
+</div>
+
+<div class="validation-message" id="validationMessage"></div>
+<div class="print-toast" id="printToast" role="status" aria-live="polite">
+  <div>
+    <strong>Print/PDF complete?</strong>
+    <p>Start the next blank Stand Alone form when ready.</p>
+  </div>
+  <div class="toast-actions">
+    <button class="toast-btn secondary" onclick="hidePrintToast()">Keep Editing</button>
+    <button class="toast-btn primary" onclick="startNewFormFromToast()">New Form</button>
+  </div>
 </div>
 
 <!-- ══════════════════════════════════════ -->
@@ -1098,7 +1234,7 @@
 
     <!-- Products & Services Table -->
     <div class="section-title">Products &amp; Services Applied <span style="font-weight:300;text-transform:none;font-family:'Lato';font-size:0.75rem;letter-spacing:0;color:var(--mid-gray)">(Stand Alone (SA) or Tier)</span></div>
-    <p class="table-note">Mark N/A for items not included in the selected package. Record date applied for all active items. Click any cell to edit. Use the toolbar to add new rows.</p>
+    <p class="table-note">Package selection loads the standard product and coverage rows automatically. Record date applied for all active items; cells remain editable for corrections, add-ons, or exceptions.</p>
 
     <div class="products-table-wrap">
       <table class="products-table" id="productsTable">
@@ -1134,6 +1270,158 @@
   </div>
 
 </div><!-- end page2 -->
+
+<div class="cert-card terms-page" id="page3">
+  <div class="cert-body">
+    <div class="terms-title">Coverage &mdash; What Is Protected</div>
+
+    <div class="terms-section">
+      <p>This Certificate constitutes a dealer-backed service warranty issued directly by Sturgeon Chrysler Dodge Jeep Ram ("the Dealer"). It is not a contract of insurance. Coverage is provided by way of minor repair or re-application of the protection products described herein, in respect of reasonable and expected wear and tear arising from normal vehicle use. Sections below apply only to the products included in the purchased package or add-on services.</p>
+    </div>
+
+    <div class="terms-section">
+      <h3>Section A &mdash; Interior Protection (Rip &middot; Tear &middot; Burn) &mdash; Tier 3 / Total Control</h3>
+      <p>Covers reasonable and expected wear-and-tear damage to treated leather, synthetic leather, cloth, and vinyl upholstery surfaces. Included in Tier 3 (Total Control) only.</p>
+      <ul>
+        <li>Accidental rips, tears, cuts, or burns up to 5 cm (2 inches) in any direction that penetrate the surface layer of original factory-installed or factory-supplied upholstery.</li>
+        <li>Applies to front and rear seating surfaces, centre console lid, door panel fabric/leather inserts, and headrests where the Leather Interior Shield was applied.</li>
+        <li>Qualified damage will be repaired or, if the coating has failed to protect as warranted, the affected surface will be re-treated at no charge.</li>
+        <li>Coverage Term: 5 years from delivery date.</li>
+        <li>Maximum of three (3) service claims per 12-month period.</li>
+      </ul>
+    </div>
+
+    <div class="terms-section">
+      <h3>Section B &mdash; Exterior Paint Protection (Fading &amp; UV Degradation) &mdash; All Tiers</h3>
+      <p>Covers visible paint fading and UV-related colour degradation on treated exterior panels. Applicable to all Sturgeon Shield tiers.</p>
+      <ul>
+        <li>Visible fading, chalking, or measurable loss of colour depth on factory-painted exterior body panels attributable to normal UV radiation and atmospheric exposure.</li>
+        <li>If the applied graphene or ceramic coating is found to have failed to provide its warranted UV-barrier and hydrophobic protection under normal use, the Dealer will re-apply the coating to affected panels at no charge.</li>
+        <li>Tier 1 (Essentials): 5+ years &mdash; Graphene Paint Armour coating.</li>
+        <li>Tier 2 (Essentials+): Permanent &mdash; Ceramic PRO 10H Shield provides long-term paint defect and UV coverage.</li>
+        <li>Tier 3 (Total Control): 10 years for new vehicles / 5 years for pre-owned &mdash; inclusive Paint Defect Coverage.</li>
+        <li>Applies to accessible, factory-painted vertical and horizontal sheet metal body panels, glass, and treated trim.</li>
+        <li>Does not replace or supplement the OEM factory paint warranty provided by Stellantis Canada.</li>
+        <li>Maximum of two (2) service claims per 12-month period.</li>
+      </ul>
+    </div>
+
+    <div class="terms-section">
+      <h3>Section C &mdash; Rust &amp; Corrosion Protection</h3>
+      <p>Covers surface rust and corrosion prevention on treated panels. Applicable to Tier 3 (Total Control) and/or when rust protection add-ons are purchased.</p>
+      <ul>
+        <li>Electronic Rust Inhibitor (Tier 3): The OBD-II plug-in module generates a repetitive pulsing surface current, which reduces metal oxidation across the vehicle's sheet metal panels 24/7.</li>
+        <li>Rust Inhibitor Spray: Solvent-based amber product injected into inner cavities, door panels, and crevices. Bonds to metal, will not drip, displaces existing moisture. No drilling required. Guarantees against rust perforation occurring from the inside out.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="cert-footer">
+    <p><strong>Sturgeon Chrysler Dodge Jeep Ram</strong> Â· 4618 - 50th Ave., Legal, AB  T0G 1L0 Â· sturgeondodge.ca</p>
+    <p><em>Sturgeon Shieldâ„¢ is a dealer-issued service warranty. This Certificate is not an insurance product. Retain for the life of your ownership.</em></p>
+  </div>
+</div><!-- end page3 -->
+
+<div class="cert-card terms-page" id="page4">
+  <div class="cert-body">
+    <div class="terms-title">Terms &amp; Conditions</div>
+
+    <div class="terms-section">
+      <ul>
+        <li>This coverage is complementary to, and does not replace, the Stellantis Canada Anti-Corrosion Perforation Limited Warranty (5 years / 160,000 km on all body sheet metal).</li>
+        <li>Coverage Term: 7 years for new vehicles / 5 years for pre-owned (Tier 3).</li>
+        <li>Maximum of two (2) service claims per 12-month period.</li>
+      </ul>
+    </div>
+
+    <div class="terms-section">
+      <h3>Section D &mdash; Undercoating Protection</h3>
+      <ul>
+        <li>The underbody of the vehicle is fully coated with a heavy-bodied, pliable solvent-based amber formula that seals against road salt, gravel impact, moisture, and debris.</li>
+        <li>The coating flows into seams and crevices and will not crack, peel, or chip under normal operating conditions.</li>
+        <li>Reduces road noise by up to 50% and provides thermal insulation against extreme hot and cold temperatures.</li>
+        <li>If the undercoating is found to have failed to adhere or provide protection under normal use within the coverage term, the Dealer will reapply the affected section at no charge.</li>
+        <li>Coverage Term: 5 years or 160,000 km from delivery date, whichever comes first.</li>
+        <li>Maximum of one (1) underbody service claim per 12-month period.</li>
+      </ul>
+    </div>
+
+    <div class="terms-section">
+      <h3>General Terms &amp; Conditions</h3>
+      <ol>
+        <li><strong>Service Warranty &mdash; Not Insurance.</strong> This Certificate is a service warranty issued by Sturgeon Chrysler Dodge Jeep Ram (the "Dealer") as the sole obligor. It is not a contract of insurance and is not underwritten by any insurer. Coverage is limited to the repair or re-application of protection products consistent with minor repairs for reasonable and expected wear and tear, as contemplated under Alberta Interpretation Bulletin 05-2024 (Revised December 23, 2024) issued by the Alberta Superintendent of Insurance.</li>
+        <li><strong>Coverage Territory.</strong> Coverage applies to vehicles ordinarily kept and maintained within Canada. Claims must be presented to the Dealer at 4618 - 50th Ave., Legal, AB T0G 1L0.</li>
+        <li><strong>Maintenance Requirements.</strong> To maintain coverage: (a) wash the vehicle regularly using pH-neutral automotive soap; (b) avoid abrasive compounds, harsh chemicals, or direct high-pressure washing at panel edges; (c) follow the Dealer's recommended coating maintenance schedule (available on request); and (d) retain all maintenance records.</li>
+        <li><strong>Transferability.</strong> This Certificate is non-transferable. No refunds.</li>
+        <li><strong>Claim Limits &amp; Remedies.</strong> The Dealer's sole obligation is to repair or re-apply the applicable protection product to the affected surface. The Dealer is not liable for incidental, consequential, or indirect damages including loss of use. The Dealer's maximum aggregate liability shall not exceed the original retail cost of the protection package or services purchased.</li>
+        <li><strong>Governing Law.</strong> This Certificate is governed by the laws of the Province of Alberta. Any unresolved disputes shall be subject to the exclusive jurisdiction of the courts of Alberta.</li>
+      </ol>
+    </div>
+
+    <div class="terms-section">
+      <h3>Exclusions &mdash; What Is Not Covered</h3>
+      <p>This Certificate does not cover damage, loss, or failure arising from or related to any of the following:</p>
+      <ul>
+        <li>Damage from collision, impact, vandalism, theft, fire, flood, hail, or any other external or fortuitous peril.</li>
+        <li>Use of non-approved cleaning products, abrasive polishes, industrial solvents, or improper washing or detailing techniques.</li>
+        <li>Rust perforation (rust-through, creating a hole in sheet metal) &mdash; covered separately under the Stellantis Canada Anti-Corrosion Perforation Limited Warranty.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="cert-footer">
+    <p><strong>Sturgeon Chrysler Dodge Jeep Ram</strong> Â· 4618 - 50th Ave., Legal, AB  T0G 1L0 Â· sturgeondodge.ca</p>
+    <p><em>Sturgeon Shieldâ„¢ is a dealer-issued service warranty. This Certificate is not an insurance product. Retain for the life of your ownership.</em></p>
+  </div>
+</div><!-- end page4 -->
+
+<div class="cert-card terms-page" id="page5">
+  <div class="cert-body">
+    <div class="terms-title">Exclusions &amp; Legal Disclosure</div>
+
+    <div class="terms-section">
+      <h3>Additional Exclusions</h3>
+      <ul>
+        <li>Pre-existing damage, rust, paint defects, chips, or scratches present at the time of delivery or product application.</li>
+        <li>Surfaces where factory paint or clearcoat has been compromised by accident repair, aftermarket modification, paint correction, or third-party product application after delivery.</li>
+        <li>Normal paint swirling, water spots, or minor surface marring from improper washing &mdash; not attributable to coating failure.</li>
+        <li>Interior damage exceeding 5 cm in any direction; deliberate cuts, burns from intentional misuse, or damage caused by sharp tools or weapons.</li>
+        <li>Damage caused by pets, sharp objects, deliberate misuse, or commercial use of the vehicle.</li>
+        <li>Vehicles used for ridesharing, taxi, delivery, emergency services, racing, or other commercial purposes.</li>
+        <li>Vehicles declared a total loss, salvaged, or with an altered or undisclosed VIN.</li>
+        <li>Costs for rental vehicles, towing, storage, or any loss of use during a service claim.</li>
+        <li>Claims submitted after expiry of the applicable coverage term (time or kilometre limit, whichever occurs first).</li>
+        <li>Coverage sections not included in the purchased package tier or as a confirmed add-on service on this Certificate.</li>
+      </ul>
+    </div>
+
+    <div class="terms-section">
+      <h3>How To Make A Claim</h3>
+      <ul>
+        <li>Contact Sturgeon Chrysler Dodge Jeep Ram Service Department at sturgeondodge.ca or by calling the dealership to schedule a claim inspection.</li>
+        <li>Present this Certificate along with a valid government-issued photo ID and proof of vehicle ownership.</li>
+        <li>Describe the damage or coating failure. The service advisor will assess whether it falls within the coverage criteria for the purchased tier and add-ons.</li>
+        <li>If the claim is approved, the Dealer will perform the repair or re-application at no charge, subject to the applicable claim limits.</li>
+        <li>Unauthorized repairs or re-applications performed by third parties will not be reimbursed and may void remaining coverage.</li>
+      </ul>
+    </div>
+
+    <div class="terms-section">
+      <h3>Legal Disclosure &mdash; Alberta &amp; British Columbia</h3>
+      <p><strong>IMPORTANT &mdash; PLEASE READ CAREFULLY</strong></p>
+      <p>This Vehicle Protection Certificate is a service warranty contract between the certificate holder and Sturgeon Chrysler Dodge Jeep Ram. It is NOT a contract of insurance, is NOT underwritten by a licensed insurer, and is NOT subject to the Alberta Insurance Act (R.S.A. 2000, c. I-3) or the British Columbia Insurance Act (R.S.B.C. 2012, c. 1).</p>
+      <p>This Certificate is structured to fall within the motor vehicle service plan carve-out under Alberta Interpretation Bulletin 05-2024 (Revised, December 23, 2024) issued by the Alberta Superintendent of Insurance, which exempts service plans providing minor repairs for reasonable and expected wear and tear from classification as insurance. Covered services expressly referenced in that Bulletin include scuff, ding, chip, cut, tear, and scratch repairs (interior or exterior).</p>
+      <p>Coverage under this Certificate is provided solely from the Dealer's own resources as a service obligation arising from its workmanship in applying the listed protection products. No third-party insurer is involved.</p>
+      <p>This Certificate does not limit, replace, or affect any statutory warranty rights available under the Alberta Consumer Protection Act, the Alberta Sale of Goods Act, or any other applicable provincial consumer protection legislation.</p>
+      <p><strong>Note for BC-Registered Vehicles:</strong> Coverage under this Certificate is limited to wear-and-tear service and does not constitute automobile insurance as defined under British Columbia law or BCFSA Regulatory Statement No. 24-008 (April 2024).</p>
+    </div>
+  </div>
+
+  <div class="cert-footer">
+    <p><strong>Sturgeon Chrysler Dodge Jeep Ram</strong> Â· 4618 - 50th Ave., Legal, AB  T0G 1L0 Â· sturgeondodge.ca</p>
+    <p><em>Sturgeon Shieldâ„¢ is a dealer-issued service warranty. This Certificate is not an insurance product. Retain for the life of your ownership.</em></p>
+  </div>
+</div><!-- end page5 -->
 </div><!-- end page-wrapper -->
 
 
@@ -1141,23 +1429,6 @@
 <!--  JAVASCRIPT                            -->
 <!-- ══════════════════════════════════════ -->
 <script>
-// ─── Logo file picker ────────────────────────────────────────────────────────
-function loadLogoFile(input) {
-  if (!input.files || !input.files[0]) return;
-  const reader = new FileReader();
-  reader.onload = function(e) {
-    // Apply to every logo img on the page
-    document.querySelectorAll('.dealer-logo-area img').forEach(img => {
-      img.src = e.target.result;
-      img.style.display = 'block';
-      // Hide any fallback text
-      const fallback = img.nextElementSibling;
-      if (fallback) fallback.style.display = 'none';
-    });
-  };
-  reader.readAsDataURL(input.files[0]);
-}
-
 // ─── Auto-grow textarea helper ──────────────────────────────────────────────
 function autoGrow(el) {
   el.style.height = 'auto';
@@ -1166,58 +1437,97 @@ function autoGrow(el) {
   });
 }
 
-// ─── Default product rows ───────────────────────────────────────────────────
-const DEFAULT_PRODUCTS = [
-  {
+// ─── Package-driven product rows ────────────────────────────────────────────
+const PRODUCT_LIBRARY = {
+  clayBar: {
+    product: 'Clay Bar Decontamination Treatment',
+    coverage: 'Exterior painted panels and glass — removes bonded contaminants before protection is applied'
+  },
+  prepSpray: {
+    product: 'Total Clean Prep Spray',
+    coverage: 'Exterior and treated surfaces — final cleaning and surface preparation before coating'
+  },
+  graphenePaint: {
     product: 'Graphene Paint Armour (SiO2 NanoCoating)',
-    coverage: 'Exterior painted panels — UV barrier, self-healing, hydrophobic protection',
-    tier: 'TIER 1/2/3 / SA',
-    na: false,
-    date: ''
+    coverage: 'Exterior painted panels — UV barrier, self-healing, hydrophobic protection'
   },
-  {
-    product: 'Leather Interior Shield (Graphene Ceramic)',
-    coverage: 'All treated leather/vinyl/fabric — stain, UV, spill & rip/tear/burn protection',
-    tier: 'TIER 1/2/3 / SA',
-    na: false,
-    date: ''
+  leatherInterior: {
+    product: 'Leather/Vinyl Interior Shield',
+    coverage: 'Treated leather and vinyl surfaces — stain, UV, spill, and wear protection'
   },
-  {
+  fabricProtection: {
+    product: 'Fabric Protection',
+    coverage: 'Carpets, trunk, headliner, and treated fabric surfaces — stain and spill resistance'
+  },
+  amberRust: {
+    product: 'Amber Based Solvent Rust Inhibitor',
+    coverage: 'Inner cavities, door panels, and crevices — moisture displacement and corrosion prevention'
+  },
+  ceramic10h: {
     product: 'Ceramic PRO 10H Shield',
-    coverage: 'Exterior panels & trim — 10H permanent hardness, candy gloss',
-    tier: 'TIER 2/3 / SA',
-    na: false,
-    date: ''
+    coverage: 'Exterior panels and trim — 10H permanent hardness, gloss, paint defect, and UV protection'
   },
-  {
-    product: 'Windshield Ceramic Coating',
-    coverage: 'Glass surfaces — hydrophobic, rain-repelling, clarity treatment',
-    tier: 'TIER 2/3 / SA',
-    na: false,
-    date: ''
+  windshieldCeramic: {
+    product: 'Windshield & Sideview Mirrors Ceramic Coating',
+    coverage: 'Glass and mirror surfaces — hydrophobic treatment, enhanced rain visibility, and chip resistance'
   },
-  {
+  rustSpray: {
     product: 'Rust Inhibitor Spray',
-    coverage: 'Inner cavities & door panels — solvent-based amber, moisture displacement',
-    tier: 'TIER 2/3 / SA',
-    na: false,
-    date: ''
+    coverage: 'Inner cavities and door panels — solvent-based amber formula, bonds to metal, no drilling required'
   },
-  {
+  electronicRust: {
     product: 'Electronic Rust Inhibitor',
-    coverage: 'OBD-II plug-in module — 24/7 pulsing current corrosion protection',
-    tier: 'Tier 3 / SA',
-    na: false,
-    date: ''
+    coverage: 'OBD-II plug-in module — 24/7 pulsing current corrosion protection across sheet metal panels'
   },
-  {
+  interiorWarranty: {
+    product: 'Interior Rip / Tear / Burn Warranty',
+    coverage: 'Treated seating surfaces, console lid, door panel inserts, and headrests — 5-year interior damage coverage'
+  },
+  paintDefect: {
+    product: 'Paint Defect Coverage',
+    coverage: 'Factory-painted body panels — paint fading, UV degradation, and qualifying coating failure coverage'
+  },
+  rustCorrosion: {
+    product: 'Rust & Corrosion Coverage',
+    coverage: 'Treated panels and corrosion-prevention systems — 10 years new / 5 years pre-owned for Tier 3'
+  },
+  undercoating: {
     product: 'Undercoating',
-    coverage: 'Full underbody — solvent-based amber, sound deadening, road salt barrier',
-    tier: 'Tier 3 / SA',
+    coverage: 'Full underbody — solvent-based amber, sound deadening, road salt barrier'
+  },
+  tireRim: {
+    product: 'Tire & Rim Protection',
+    coverage: 'Covered tires and rims — qualifying road hazard protection as listed in the selected package'
+  }
+};
+
+const PACKAGE_PRODUCT_KEYS = {
+  'SA': ['graphenePaint', 'leatherInterior', 'ceramic10h', 'windshieldCeramic', 'rustSpray', 'electronicRust', 'undercoating', 'tireRim'],
+  'Essentials': ['clayBar', 'prepSpray', 'graphenePaint', 'leatherInterior', 'fabricProtection', 'amberRust'],
+  'Essentials+': ['clayBar', 'prepSpray', 'graphenePaint', 'leatherInterior', 'fabricProtection', 'amberRust', 'ceramic10h', 'windshieldCeramic', 'rustSpray'],
+  'Total Control': ['clayBar', 'prepSpray', 'graphenePaint', 'leatherInterior', 'fabricProtection', 'amberRust', 'ceramic10h', 'windshieldCeramic', 'rustSpray', 'electronicRust', 'interiorWarranty', 'paintDefect', 'rustCorrosion', 'undercoating', 'tireRim']
+};
+
+const PACKAGE_TIER_LABELS = {
+  'SA': 'SA',
+  'Essentials': 'Tier 1',
+  'Essentials+': 'Tier 2',
+  'Total Control': 'Tier 3'
+};
+
+function rowsForPackage(pkg) {
+  const keys = PACKAGE_PRODUCT_KEYS[pkg] || PACKAGE_PRODUCT_KEYS['SA'];
+  const tier = PACKAGE_TIER_LABELS[pkg] || 'SA';
+  return keys.map(key => ({
+    product: PRODUCT_LIBRARY[key].product,
+    coverage: PRODUCT_LIBRARY[key].coverage,
+    tier,
     na: false,
     date: ''
-  }
-];
+  }));
+}
+
+const DEFAULT_PRODUCTS = rowsForPackage('SA');
 
 // ─── Render product table ────────────────────────────────────────────────────
 function renderProducts(rows) {
@@ -1320,8 +1630,14 @@ function selectTier(t, skipPkg) {
 // ─── Package selection ───────────────────────────────────────────────────────
 const PKG_IDS = { 'SA': 'pkg-sa', 'Essentials': 'pkg-ess', 'Essentials+': 'pkg-essp', 'Total Control': 'pkg-tc' };
 function selectPkg(val, skipTier) {
-  Object.values(PKG_IDS).forEach(id => document.getElementById(id).classList.remove('selected'));
-  document.getElementById(PKG_IDS[val]).classList.add('selected');
+  Object.values(PKG_IDS).forEach(id => {
+    const option = document.getElementById(id);
+    option.classList.remove('selected');
+    option.querySelector('input').checked = false;
+  });
+  const selectedOption = document.getElementById(PKG_IDS[val]);
+  selectedOption.classList.add('selected');
+  selectedOption.querySelector('input').checked = true;
   // Sync tier card
   if (!skipTier) {
     const tierNum = PKG_TO_TIER[val];
@@ -1335,21 +1651,26 @@ function selectPkg(val, skipTier) {
       });
     }
   }
+  renderProducts(rowsForPackage(val));
 }
-// Allow clicking the label
-document.querySelectorAll('.pkg-option').forEach(el => {
-  el.addEventListener('click', () => {
-    const val = el.querySelector('input').value;
-    selectPkg(val);
-  });
-});
 
 // ─── Signature Pads ──────────────────────────────────────────────────────────
 const sigPads = {};
 
 function initSigPad(canvasId, padKey) {
-  const canvas = document.getElementById(canvasId);
+  let canvas = document.getElementById(canvasId);
   if (!canvas) return;
+
+  const existingPad = sigPads[padKey];
+  const savedSignature = existingPad && existingPad.hasSignature()
+    ? existingPad.canvas.toDataURL('image/png')
+    : null;
+
+  if (existingPad) {
+    const replacement = canvas.cloneNode(true);
+    canvas.replaceWith(replacement);
+    canvas = replacement;
+  }
 
   // DPI scaling
   const dpr = window.devicePixelRatio || 1;
@@ -1365,7 +1686,16 @@ function initSigPad(canvasId, padKey) {
   ctx.lineJoin = 'round';
 
   let drawing = false;
-  let hasMark = false;
+  let hasMark = Boolean(savedSignature);
+
+  if (savedSignature) {
+    const img = new Image();
+    img.onload = () => {
+      ctx.drawImage(img, 0, 0, rect.width || 350, rect.height || 90);
+      onSignatureChange();
+    };
+    img.src = savedSignature;
+  }
 
   function getPos(e) {
     const r = canvas.getBoundingClientRect();
@@ -1402,6 +1732,53 @@ function clearAllSignatures() {
   [1, 2].forEach(n => clearSig(n));
 }
 
+function clearFormFields(skipConfirm = false) {
+  if (!skipConfirm && !window.confirm('Clear all form fields, notes, signatures, and reset to Stand Alone?')) {
+    return;
+  }
+
+  hidePrintToast();
+
+  document.querySelectorAll('input').forEach(input => {
+    if (input.type === 'radio' || input.type === 'checkbox') {
+      input.checked = false;
+    } else {
+      input.value = '';
+    }
+  });
+
+  document.querySelectorAll('textarea').forEach(textarea => {
+    textarea.value = '';
+    autoGrow(textarea);
+  });
+
+  document.querySelectorAll('.tier-card, .pkg-option').forEach(el => el.classList.remove('selected'));
+  document.getElementById('certNumDisplay').textContent = 'SS____________';
+  selectPkg('SA');
+  clearAllSignatures();
+  clearValidationState();
+
+  setTimeout(() => {
+    document.querySelectorAll('.coverage-ta').forEach(ta => autoGrow(ta));
+  }, 30);
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function showPrintToast() {
+  const toast = document.getElementById('printToast');
+  if (toast) toast.classList.add('show');
+}
+
+function hidePrintToast() {
+  const toast = document.getElementById('printToast');
+  if (toast) toast.classList.remove('show');
+}
+
+function startNewFormFromToast() {
+  clearFormFields();
+}
+
 function onSignatureChange() {
   const sig1 = sigPads['sig1'] && sigPads['sig1'].hasSignature();
   const stamp = document.getElementById('officialStamp');
@@ -1417,8 +1794,78 @@ function onSignatureChange() {
 }
 
 // ─── Initialize on load ──────────────────────────────────────────────────────
+function clearValidationState() {
+  document.querySelectorAll('.validation-error').forEach(el => el.classList.remove('validation-error'));
+  const msg = document.getElementById('validationMessage');
+  if (msg) {
+    msg.style.display = 'none';
+    msg.textContent = '';
+  }
+}
+
+function markInvalid(el) {
+  if (el) el.classList.add('validation-error');
+}
+
+function validateCertificate() {
+  clearValidationState();
+
+  const missing = [];
+  const requiredFields = [
+    ['customerName', 'Customer Name'],
+    ['vinField', 'VIN'],
+    ['deliveryDate', 'Delivery / Service Date']
+  ];
+
+  requiredFields.forEach(([id, label]) => {
+    const field = document.getElementById(id);
+    if (!field || !field.value.trim()) {
+      missing.push(label);
+      markInvalid(field);
+    }
+  });
+
+  if (!document.querySelector('input[name="vehicleType"]:checked')) {
+    missing.push('Vehicle Type');
+    markInvalid(document.querySelector('.radio-group'));
+  }
+
+  if (!document.querySelector('input[name="pkg"]:checked')) {
+    missing.push('Package Purchased');
+    markInvalid(document.getElementById('pkgSelect'));
+  }
+
+  if (!sigPads.sig1 || !sigPads.sig1.hasSignature()) {
+    missing.push('Customer Signature');
+    markInvalid(document.getElementById('sigCanvas1').closest('.sig-canvas-wrap'));
+  }
+
+  if (!sigPads.sig2 || !sigPads.sig2.hasSignature()) {
+    missing.push('Dealer Signature');
+    markInvalid(document.getElementById('sigCanvas2').closest('.sig-canvas-wrap'));
+  }
+
+  if (!missing.length) return true;
+
+  const msg = document.getElementById('validationMessage');
+  msg.textContent = 'Complete before printing: ' + missing.join(', ') + '.';
+  msg.style.display = 'block';
+  msg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  return false;
+}
+
+let printWasRequested = false;
+
+function validateAndPrint() {
+  if (!validateCertificate()) return;
+  hidePrintToast();
+  printWasRequested = true;
+  window.print();
+}
+
+// Initialize after the product table and canvases have layout dimensions.
 window.addEventListener('load', () => {
-  renderProducts(DEFAULT_PRODUCTS);
+  selectPkg('SA');
 
   // Auto-grow all coverage textareas after render
   setTimeout(() => {
@@ -1430,6 +1877,12 @@ window.addEventListener('load', () => {
     initSigPad('sigCanvas1', 'sig1');
     initSigPad('sigCanvas2', 'sig2');
   }, 150);
+});
+
+window.addEventListener('afterprint', () => {
+  if (!printWasRequested) return;
+  printWasRequested = false;
+  showPrintToast();
 });
 
 // Re-init canvases on resize (debounced)
