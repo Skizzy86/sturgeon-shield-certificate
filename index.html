@@ -1169,11 +1169,10 @@
         <div class="tier-name">ESSENTIALS</div>
         <ul>
           <li>Clay Bar Decontamination Treatment</li>
-          <li>Total Clean Prep Spray</li>
+          <li>Total Clean Prep Spray Application</li>
           <li>Graphene Paint Armour</li>
           <li>Leather/Vinyl Interior Shield</li>
-          <li>Fabric Protection (Carpets, Trunk, Headliner)</li>
-          <li>Amber Based Solvent Rust Inhibitor</li>
+          <li>Fabric Protection (All Carpets, Trunk, Headliner, etc)</li>
         </ul>
       </div>
 
@@ -1187,10 +1186,9 @@
         <div class="tier-name">ESSENTIALS+</div>
         <ul>
           <li>Everything in Essentials</li>
-          <li>Ceramic PRO 10H Shield</li>
+          <li>Ceramic PRO 10H Shield Nano Technology</li>
           <li>Windshield &amp; Sideview Mirrors Ceramic Coating</li>
-          <li>Enhanced Rain &amp; Chip Resistance</li>
-          <li>Rust Inhibitor Spray</li>
+          <li>Amber Based Solvent Rust Inhibitor</li>
         </ul>
       </div>
 
@@ -1205,10 +1203,9 @@
         <ul>
           <li>Everything in Essentials+</li>
           <li>Electronic Rust Inhibitor (OBD Plug-in)</li>
-          <li>5-Year Interior Rip / Tear / Burn Warranty</li>
+          <li>5-Year Interior Rip / Tear / Burn Membership</li>
           <li>Paint Defect Coverage</li>
           <li>Rust &amp; Corrosion Coverage (10yr New / 5yr Used)</li>
-          <li>Undercoating</li>
           <li>Tire &amp; Rim Protection</li>
         </ul>
       </div>
@@ -1444,11 +1441,11 @@ const PRODUCT_LIBRARY = {
     coverage: 'Exterior painted panels and glass — removes bonded contaminants before protection is applied'
   },
   prepSpray: {
-    product: 'Total Clean Prep Spray',
+    product: 'Total Clean Prep Spray Application',
     coverage: 'Exterior and treated surfaces — final cleaning and surface preparation before coating'
   },
   graphenePaint: {
-    product: 'Graphene Paint Armour (SiO2 NanoCoating)',
+    product: 'Graphene Paint Armour',
     coverage: 'Exterior painted panels — UV barrier, self-healing, hydrophobic protection'
   },
   leatherInterior: {
@@ -1456,7 +1453,7 @@ const PRODUCT_LIBRARY = {
     coverage: 'Treated leather and vinyl surfaces — stain, UV, spill, and wear protection'
   },
   fabricProtection: {
-    product: 'Fabric Protection',
+    product: 'Fabric Protection (All Carpets, Trunk, Headliner, etc)',
     coverage: 'Carpets, trunk, headliner, and treated fabric surfaces — stain and spill resistance'
   },
   amberRust: {
@@ -1464,7 +1461,7 @@ const PRODUCT_LIBRARY = {
     coverage: 'Inner cavities, door panels, and crevices — moisture displacement and corrosion prevention'
   },
   ceramic10h: {
-    product: 'Ceramic PRO 10H Shield',
+    product: 'Ceramic PRO 10H Shield Nano Technology',
     coverage: 'Exterior panels and trim — 10H permanent hardness, gloss, paint defect, and UV protection'
   },
   windshieldCeramic: {
@@ -1480,7 +1477,7 @@ const PRODUCT_LIBRARY = {
     coverage: 'OBD-II plug-in module — 24/7 pulsing current corrosion protection across sheet metal panels'
   },
   interiorWarranty: {
-    product: 'Interior Rip / Tear / Burn Warranty',
+    product: '5-Year Interior Rip / Tear / Burn Membership',
     coverage: 'Treated seating surfaces, console lid, door panel inserts, and headrests — 5-year interior damage coverage'
   },
   paintDefect: {
@@ -1492,7 +1489,7 @@ const PRODUCT_LIBRARY = {
     coverage: 'Treated panels and corrosion-prevention systems — 10 years new / 5 years pre-owned for Tier 3'
   },
   undercoating: {
-    product: 'Undercoating',
+    product: 'Undercoating (Standalone Only)',
     coverage: 'Full underbody — solvent-based amber, sound deadening, road salt barrier'
   },
   tireRim: {
@@ -1502,10 +1499,10 @@ const PRODUCT_LIBRARY = {
 };
 
 const PACKAGE_PRODUCT_KEYS = {
-  'SA': ['graphenePaint', 'leatherInterior', 'ceramic10h', 'windshieldCeramic', 'rustSpray', 'electronicRust', 'undercoating', 'tireRim'],
-  'Essentials': ['clayBar', 'prepSpray', 'graphenePaint', 'leatherInterior', 'fabricProtection', 'amberRust'],
-  'Essentials+': ['clayBar', 'prepSpray', 'graphenePaint', 'leatherInterior', 'fabricProtection', 'amberRust', 'ceramic10h', 'windshieldCeramic', 'rustSpray'],
-  'Total Control': ['clayBar', 'prepSpray', 'graphenePaint', 'leatherInterior', 'fabricProtection', 'amberRust', 'ceramic10h', 'windshieldCeramic', 'rustSpray', 'electronicRust', 'interiorWarranty', 'paintDefect', 'rustCorrosion', 'undercoating', 'tireRim']
+  'SA': ['clayBar', 'prepSpray', 'graphenePaint', 'leatherInterior', 'fabricProtection', 'ceramic10h', 'windshieldCeramic', 'amberRust', 'electronicRust', 'tireRim', 'undercoating'],
+  'Essentials': ['clayBar', 'prepSpray', 'graphenePaint', 'leatherInterior', 'fabricProtection'],
+  'Essentials+': ['clayBar', 'prepSpray', 'graphenePaint', 'leatherInterior', 'fabricProtection', 'ceramic10h', 'windshieldCeramic', 'amberRust'],
+  'Total Control': ['clayBar', 'prepSpray', 'graphenePaint', 'leatherInterior', 'fabricProtection', 'ceramic10h', 'windshieldCeramic', 'amberRust', 'electronicRust', 'interiorWarranty', 'paintDefect', 'rustCorrosion', 'tireRim']
 };
 
 const PACKAGE_TIER_LABELS = {
