@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -202,6 +202,36 @@
       border-bottom: 2px solid var(--gold);
       padding: 2px 6px;
       cursor: default;
+      text-align: center;
+    }
+    .cert-num-row .cert-num-placeholder {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--mid-gray);
+      letter-spacing: 0;
+      margin-left: 8px;
+      text-transform: none;
+    }
+    .cert-num-row .cert-package-group {
+      margin-left: auto;
+    }
+    .cert-num-row .cert-package-badge {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--navy);
+      background: rgba(255,255,255,0.58);
+      border: 1px solid #D7C070;
+      border-bottom: 2px solid var(--gold);
+      border-radius: 3px;
+      min-width: 146px;
+      padding: 5px 12px;
+      text-align: center;
+      white-space: nowrap;
     }
     .cert-num-row input[type="date"],
     .cert-num-row input[type="text"] {
@@ -899,43 +929,241 @@
       margin-bottom: 10px;
     }
 
-    .terms-page .cert-body {
-      padding-bottom: 28px;
+    .terms-page {
+      background: #FFFFFF;
+      color: #1F2733;
     }
-    .terms-title {
+    .terms-page .cert-body {
+      padding: 34px 46px 32px;
+    }
+    .legal-header {
+      border-bottom: 3px solid var(--gold);
+      margin-bottom: 16px;
+      padding-bottom: 9px;
+    }
+    .legal-brand {
       font-family: 'Oswald', sans-serif;
       color: var(--gold);
-      font-size: 1.15rem;
+      font-size: 1.74rem;
       font-weight: 700;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.07em;
+      line-height: 1;
       text-transform: uppercase;
-      border-bottom: 2px solid var(--gold);
-      padding-bottom: 8px;
-      margin-bottom: 16px;
     }
-    .terms-section {
-      margin-bottom: 16px;
-    }
-    .terms-section h3 {
-      font-family: 'Oswald', sans-serif;
+    .legal-subtitle {
       color: var(--navy);
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      margin-top: 2px;
+      text-transform: uppercase;
+    }
+    .legal-meta {
+      color: #4B5563;
+      font-size: 0.66rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      margin-top: 5px;
+      text-transform: uppercase;
+    }
+    .legal-title {
+      background: var(--navy);
+      color: #FFFFFF;
+      font-family: 'Oswald', sans-serif;
       font-size: 0.86rem;
       font-weight: 700;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.1em;
+      line-height: 1;
+      margin: 16px 0 8px;
+      padding: 7px 10px;
       text-transform: uppercase;
-      margin-bottom: 6px;
     }
-    .terms-section p,
-    .terms-section li {
+    .legal-kicker {
+      color: var(--gold);
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      margin: 0 0 7px;
+      text-transform: uppercase;
+    }
+    .benefits-table {
+      border-collapse: collapse;
+      table-layout: fixed;
+      width: 100%;
+    }
+    .benefits-table th,
+    .benefits-table td {
+      border-bottom: 1px solid #D9DEE7;
+      color: #263241;
+      font-size: 0.64rem;
+      line-height: 1.3;
+      padding: 4px 5px;
+      vertical-align: top;
+    }
+    .benefits-table thead th {
+      background: #EEF1F5;
+      color: var(--navy);
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .benefits-table .benefit-name {
+      color: var(--navy);
+      font-weight: 700;
+      width: 25%;
+    }
+    .benefits-table .benefit-desc {
+      width: 37%;
+    }
+    .benefits-table .benefit-check {
+      color: var(--navy);
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-align: center;
+      vertical-align: middle;
+      width: 9.5%;
+    }
+    .legal-section {
+      margin-bottom: 11px;
+    }
+    .legal-section h3 {
+      color: var(--navy);
+      font-family: 'Oswald', sans-serif;
       font-size: 0.78rem;
-      line-height: 1.55;
-      color: #444;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      margin-bottom: 4px;
+      text-transform: uppercase;
     }
-    .terms-section ul,
-    .terms-section ol {
-      padding-left: 20px;
+    .legal-section p,
+    .legal-section li {
+      color: #29313D;
+      font-size: 0.66rem;
+      line-height: 1.42;
     }
-    .terms-section li {
+    .legal-section p + p {
+      margin-top: 5px;
+    }
+    .legal-section strong {
+      color: var(--navy);
+    }
+    .legal-callout {
+      background: #F6F8FB;
+      border-left: 3px solid var(--gold);
+      color: #263241;
+      font-size: 0.67rem;
+      font-weight: 700;
+      line-height: 1.36;
+      margin: 6px 0 8px;
+      padding: 8px 10px;
+    }
+    .legal-terms {
+      counter-reset: legalTerm;
+      list-style: none;
+      padding-left: 0;
+    }
+    .legal-terms li {
+      counter-increment: legalTerm;
+      margin-bottom: 7px;
+      padding-left: 22px;
+      position: relative;
+    }
+    .legal-terms li::before {
+      content: counter(legalTerm) ".";
+      color: var(--gold);
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      left: 0;
+      position: absolute;
+      top: 0;
+    }
+    .legal-terms.continued {
+      counter-reset: legalTerm 4;
+    }
+    .legal-steps {
+      counter-reset: legalStep;
+      list-style: none;
+      padding-left: 0;
+    }
+    .legal-steps li {
+      counter-increment: legalStep;
+      margin-bottom: 5px;
+      padding-left: 22px;
+      position: relative;
+    }
+    .legal-steps li::before {
+      content: counter(legalStep);
+      background: var(--gold);
+      color: #FFFFFF;
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.58rem;
+      font-weight: 700;
+      height: 15px;
+      left: 0;
+      line-height: 15px;
+      position: absolute;
+      text-align: center;
+      top: 1px;
+      width: 15px;
+    }
+    .exclusion-grid {
+      column-count: 2;
+      column-gap: 22px;
+      margin-top: 4px;
+    }
+    .exclusion-item {
+      break-inside: avoid;
+      color: #29313D;
+      font-size: 0.63rem;
+      line-height: 1.34;
+      margin-bottom: 5px;
+      padding-left: 11px;
+      position: relative;
+    }
+    .exclusion-item::before {
+      content: "";
+      background: var(--gold);
+      border-radius: 50%;
+      height: 3px;
+      left: 0;
+      position: absolute;
+      top: 6px;
+      width: 3px;
+    }
+    .legal-disclosure {
+      border: 1px solid #D9DEE7;
+      border-left: 3px solid var(--gold);
+      margin-top: 8px;
+      padding: 8px 10px;
+    }
+    .legal-disclosure p {
+      font-size: 0.61rem;
+      line-height: 1.35;
+    }
+    .legal-disclosure p + p {
+      margin-top: 5px;
+    }
+    .legal-tight .legal-title {
+      margin-top: 12px;
+    }
+    .legal-tight .legal-section {
+      margin-bottom: 9px;
+    }
+    .legal-balanced .legal-section p,
+    .legal-balanced .legal-section li {
+      font-size: 0.64rem;
+      line-height: 1.36;
+    }
+    .legal-balanced .legal-title {
+      margin: 13px 0 7px;
+      padding: 6px 10px;
+    }
+    .legal-balanced .legal-kicker {
       margin-bottom: 5px;
     }
     .validation-error {
@@ -1043,6 +1271,12 @@
       #toolbar { display: none !important; }
       .validation-message { display: none !important; }
       .print-toast { display: none !important; }
+
+      body.print-mode-contract #page3,
+      body.print-mode-contract #page4,
+      body.print-mode-contract #page5 { display: none !important; }
+      body.print-mode-legal #page1,
+      body.print-mode-legal #page2 { display: none !important; }
       .page-wrapper {
         max-width: 100%;
         margin: 0;
@@ -1064,6 +1298,16 @@
       .tier-card.t2 { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
       .tier-card.t3 { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
       .products-table thead tr { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .terms-page {
+        min-height: 11in;
+        page-break-inside: avoid;
+        width: 8.5in;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .terms-page .cert-body {
+        padding: 0.38in 0.50in 0.34in;
+      }
 
       #officialStamp.stamp-active {
         opacity: 1 !important;
@@ -1082,6 +1326,8 @@
   <button class="tb-btn secondary add-product-action" onclick="addProductRow()">+ Add Product Row</button>
   <button class="tb-btn secondary" onclick="clearAllSignatures()">Clear Signatures</button>
   <button class="tb-btn danger" onclick="clearFormFields()">Clear Form</button>
+  <button class="tb-btn primary" onclick="printContract()">⎙ Print Contract</button>
+  <button class="tb-btn primary" onclick="printLegalDisclosures()">⎙ Print Legal/Disclosures</button>
   <button class="tb-btn primary" onclick="validateAndPrint()">⎙ Print / Save PDF</button>
 </div>
 
@@ -1128,15 +1374,11 @@
     <div class="cert-num-row">
       <div class="cert-field-group">
         <label>Certificate # <span style="font-weight:300;color:var(--mid-gray)">(SS &amp; last 6 of VIN)</span>:</label>
-        <div class="cert-num-display" id="certNumDisplay">SS____________</div>
+        <div class="cert-num-display" id="certNumDisplay"><span class="cert-num-prefix">SS</span><span class="cert-num-placeholder">(type VIN below to populate certificate number)</span></div>
       </div>
-      <div class="cert-field-group">
-        <label>Issuing Date:</label>
-        <input type="date" id="issuingDate" onchange="setDefaultExpiry(this.value)">
-      </div>
-      <div class="cert-field-group">
-        <label>Expiry Date:</label>
-        <input type="date" id="expiryDate">
+      <div class="cert-field-group cert-package-group">
+        <label>Package Selected:</label>
+        <div class="cert-package-badge" id="selectedPackageBadge">Stand Alone</div>
       </div>
     </div>
 
@@ -1207,8 +1449,8 @@
         </div>
       </div>
       <div class="form-field">
-        <label>Delivery / Service Date</label>
-        <input type="date" id="deliveryDate">
+        <label>Delivery/Application Date</label>
+        <input type="date" id="deliveryDate" onchange="syncAppliedDatesFromDelivery(this.value)">
       </div>
     </div>
 
@@ -1220,7 +1462,8 @@
       By signing below, the Customer confirms that the Sturgeon Shield™ Club protection services listed in this Certificate
       were applied to their vehicle at or before delivery, that the applicable package and add-ons have been identified,
       that the terms and conditions have been explained to them, and that they agree to be bound by its conditions. The
-      Dealer representative confirms authorization to issue this Certificate on behalf of Sturgeon Chrysler Dodge Jeep Ram.
+      Dealer representative confirms authorization to issue this Certificate on behalf of Sturgeon Chrysler Dodge Jeep Ram.<br>
+      <strong>Non-cancellable</strong> — chemicals have already been applied by time of delivery.
     </p>
 
     <div class="sig-columns">
@@ -1445,153 +1688,154 @@
 
 <div class="cert-card terms-page" id="page3">
   <div class="cert-body">
-    <div class="terms-title">Coverage &mdash; What Is Protected</div>
-
-    <div class="terms-section">
-      <p>This Certificate constitutes a dealer-backed service membership issued directly by Sturgeon Chrysler Dodge Jeep Ram ("the Dealer"). It is not a contract of insurance. Coverage is provided by way of minor repair or re-application of the protection products described herein, in respect of reasonable and expected wear and tear arising from normal vehicle use. Sections below apply only to the products included in the purchased package or add-on services.</p>
+    <div class="legal-header">
+      <div class="legal-brand">STURGEON SHIELD&trade; CLUB</div>
+      <div class="legal-subtitle">Membership Benefits &amp; Coverage</div>
+      <div class="legal-meta">Sturgeon Chrysler Dodge Jeep Ram &middot; 4618 - 50th Ave., Legal, AB T0G 1L0 &middot; sturgeondodge.ca &nbsp; | &nbsp; Page 1</div>
     </div>
 
-    <div class="terms-section">
-      <h3>Section A &mdash; Interior Protection (Rip &middot; Tear &middot; Burn) &mdash; Tier 3 / Total Control</h3>
-      <p>Covers reasonable and expected wear-and-tear damage to treated leather, synthetic leather, cloth, and vinyl upholstery surfaces. Included in Tier 3 (Total Control) only.</p>
-      <ul>
-        <li>Accidental rips, tears, cuts, or burns up to 5 cm (2 inches) in any direction that penetrate the surface layer of original factory-installed or factory-supplied upholstery.</li>
-        <li>Applies to front and rear seating surfaces, centre console lid, door panel fabric/leather inserts, and headrests where the Leather Interior Shield was applied.</li>
-        <li>Qualified damage will be repaired or, if the coating has failed to protect as warranted, the affected surface will be re-treated at no charge.</li>
-        <li>Coverage Term: 5 years from delivery date.</li>
-        <li>Maximum of three (3) service claims per 12-month period.</li>
-      </ul>
+    <div class="legal-title">Benefits By Membership</div>
+    <div class="legal-kicker">What is protected</div>
+    <table class="benefits-table">
+      <thead>
+        <tr>
+          <th class="benefit-name">Protection benefit</th>
+          <th class="benefit-desc">What is protected</th>
+          <th>Essentials</th>
+          <th>Essentials+</th>
+          <th>Total Control</th>
+          <th>Stand Alone</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="benefit-name">Clay Bar Decontamination</td><td class="benefit-desc">Surface prep; required for coating adhesion</td><td class="benefit-check">&check;</td><td class="benefit-check">&check;</td><td class="benefit-check">&check;</td><td class="benefit-check">&check;</td></tr>
+        <tr><td class="benefit-name">Total Clean Prep Spray</td><td class="benefit-desc">Molecular degreasing and surface prep</td><td class="benefit-check">&check;</td><td class="benefit-check">&check;</td><td class="benefit-check">&check;</td><td class="benefit-check">&check;</td></tr>
+        <tr><td class="benefit-name">Graphene Paint Armour</td><td class="benefit-desc">Self-healing nano-surface; UV, oxidation and hydrophobic; 5+ yr</td><td class="benefit-check">&check;</td><td class="benefit-check">&check;</td><td class="benefit-check">&check;</td><td class="benefit-check">&check;</td></tr>
+        <tr><td class="benefit-name">Leather / Vinyl Interior Shield</td><td class="benefit-desc">UV fade, crack and spill barrier on treated surfaces</td><td class="benefit-check">&check;</td><td class="benefit-check">&check;</td><td class="benefit-check">&check;</td><td class="benefit-check">&check;</td></tr>
+        <tr><td class="benefit-name">Fabric Protection</td><td class="benefit-desc">Carpets, trunk, headliner; spill and stain repellent</td><td class="benefit-check">&check;</td><td class="benefit-check">&check;</td><td class="benefit-check">&check;</td><td class="benefit-check">&check;</td></tr>
+        <tr><td class="benefit-name">Ceramic PRO 10H Shield</td><td class="benefit-desc">10H hardness permanent top coat; scratch, UV and chemical resistance</td><td class="benefit-check">&mdash;</td><td class="benefit-check">&check;</td><td class="benefit-check">&check;</td><td class="benefit-check">&check;</td></tr>
+        <tr><td class="benefit-name">Windshield &amp; Mirror Ceramic Coating</td><td class="benefit-desc">Hydrophobic rain-repelling treatment; improved visibility</td><td class="benefit-check">&mdash;</td><td class="benefit-check">&check;</td><td class="benefit-check">&check;</td><td class="benefit-check">&check;</td></tr>
+        <tr><td class="benefit-name">Amber Based Solvent Rust Inhibitor</td><td class="benefit-desc">Cavity injection; inside-out rust perforation protection</td><td class="benefit-check">&mdash;</td><td class="benefit-check">&check;</td><td class="benefit-check">&check;</td><td class="benefit-check">&check;</td></tr>
+        <tr><td class="benefit-name">Electronic Rust Inhibitor (OBD)</td><td class="benefit-desc">24/7 pulsing surface current; full-body corrosion inhibition</td><td class="benefit-check">&mdash;</td><td class="benefit-check">&mdash;</td><td class="benefit-check">&check;</td><td class="benefit-check">&check;</td></tr>
+        <tr><td class="benefit-name">Interior Rip / Tear / Burn Service</td><td class="benefit-desc">5 cm max per incident; 5-year term; aggregate cap applies</td><td class="benefit-check">&mdash;</td><td class="benefit-check">&mdash;</td><td class="benefit-check">&check;</td><td class="benefit-check">&mdash;</td></tr>
+        <tr><td class="benefit-name">Paint Defect Service</td><td class="benefit-desc">10 yr new / 5 yr pre-owned</td><td class="benefit-check">&mdash;</td><td class="benefit-check">&mdash;</td><td class="benefit-check">&check;</td><td class="benefit-check">&mdash;</td></tr>
+        <tr><td class="benefit-name">Rust &amp; Corrosion Coverage</td><td class="benefit-desc">10 yr new / 5 yr pre-owned</td><td class="benefit-check">&mdash;</td><td class="benefit-check">&mdash;</td><td class="benefit-check">&check;</td><td class="benefit-check">&mdash;</td></tr>
+        <tr><td class="benefit-name">Tire &amp; Rim Protection</td><td class="benefit-desc">Sturgeon Shield<sup>TM</sup> &middot; Two-year coverage</td><td class="benefit-check">&mdash;</td><td class="benefit-check">&mdash;</td><td class="benefit-check">&check;</td><td class="benefit-check">&mdash;</td></tr>
+        <tr><td class="benefit-name">Undercoating</td><td class="benefit-desc">Standalone only; pricing varies by vehicle</td><td class="benefit-check">&mdash;</td><td class="benefit-check">&mdash;</td><td class="benefit-check">&mdash;</td><td class="benefit-check">&check;</td></tr>
+      </tbody>
+    </table>
+
+    <div class="legal-title">Coverage Detail</div>
+    <div class="legal-section">
+      <h3>Paint &amp; exterior coating protection</h3>
+      <p>Re-application of Graphene Paint Armour or Ceramic PRO 10H is provided at no charge if the coating is found to have failed to deliver its warranted UV-barrier, hydrophobic, or protective properties under normal use and maintenance. Applies to accessible, factory-painted exterior body panels and treated trim. The Dealer will inspect and determine whether failure is attributable to coating performance or an excluded cause prior to any service.</p>
+      <p><strong>Term:</strong> Graphene, 5+ years. Ceramic PRO 10H (Essentials+, Total Control), long-term / permanent. Paint Defect Service (Total Control), 10 yr new / 5 yr pre-owned.</p>
     </div>
 
-    <div class="terms-section">
-      <h3>Section B &mdash; Exterior Paint Protection (Fading &amp; UV Degradation) &mdash; All Tiers</h3>
-      <p>Covers visible paint fading and UV-related colour degradation on treated exterior panels. Applicable to all Sturgeon Shield™ Club tiers.</p>
-      <ul>
-        <li>Visible fading, chalking, or measurable loss of colour depth on factory-painted exterior body panels attributable to normal UV radiation and atmospheric exposure.</li>
-        <li>If the applied graphene or ceramic coating is found to have failed to provide its warranted UV-barrier and hydrophobic protection under normal use, the Dealer will re-apply the coating to affected panels at no charge.</li>
-        <li>Tier 1 (Essentials): 5+ years &mdash; Graphene Paint Armour coating.</li>
-        <li>Tier 2 (Essentials+): Permanent &mdash; Ceramic PRO 10H Shield provides long-term paint defect and UV coverage.</li>
-        <li>Tier 3 (Total Control): 10 years for new vehicles / 5 years for pre-owned &mdash; inclusive Paint Defect Coverage.</li>
-        <li>Applies to accessible, factory-painted vertical and horizontal sheet metal body panels, glass, and treated trim.</li>
-        <li>Does not replace or supplement the OEM factory paint membership provided by Stellantis Canada.</li>
-        <li>Maximum of two (2) service claims per 12-month period.</li>
-      </ul>
+    <div class="legal-section">
+      <h3>Interior surface protection [All packages]</h3>
+      <p>Re-treatment of Leather/Vinyl Interior Shield and Fabric Protection is provided if the applied coating has failed to maintain its UV-barrier, spill-repellent, or anti-fade properties under normal use. Covers treated seating, door panel inserts, centre console lid, headliner, carpets, and trunk liner where the product was applied.</p>
     </div>
 
-    <div class="terms-section">
-      <h3>Section C &mdash; Rust &amp; Corrosion Protection</h3>
-      <p>Covers surface rust and corrosion prevention on treated panels. Applicable to Tier 3 (Total Control) and/or when rust protection add-ons are purchased.</p>
-      <ul>
-        <li>Electronic Rust Inhibitor (Tier 3): The OBD-II plug-in module generates a repetitive pulsing surface current, which reduces metal oxidation across the vehicle's sheet metal panels 24/7.</li>
-        <li>Rust Inhibitor Spray: Solvent-based amber product injected into inner cavities, door panels, and crevices. Bonds to metal, will not drip, displaces existing moisture. No drilling required. Guarantees against rust perforation occurring from the inside out.</li>
-      </ul>
+    <div class="legal-section">
+      <h3>Interior rip, tear &amp; burn service [Total Control only]</h3>
+      <div class="legal-callout">Incidents up to 5 cm (2 inches) in any direction on factory-installed upholstery are eligible for repair. Aggregate service value across all rip/tear/burn claims shall not exceed 50% of the original enrolled package price over the life of the membership.</div>
+      <p>Covers accidental rips, tears, cuts, and burns on treated leather, synthetic leather, cloth, and vinyl surfaces. Eligible surfaces include front and rear seating, centre console lid, door panel inserts, and headrests. The Dealer will perform the repair or, where the coating has failed, re-treat the affected surface at no charge. Term: 5 years from enrollment date.</p>
+      <p>Damage exceeding 5 cm, deliberate misuse, pet damage, or damage from sharp tools is not covered. See Exclusions.</p>
     </div>
-  </div>
 
-  <div class="cert-footer">
-    <p><strong>Sturgeon Chrysler Dodge Jeep Ram</strong> · 4618 - 50th Ave., Legal, AB  T0G 1L0 · sturgeondodge.ca</p>
-    <p><em>Sturgeon Shield™ Club is a dealer-issued service membership. This Certificate is not an insurance product. Retain for the life of your ownership.</em></p>
+    <div class="legal-section">
+      <h3>Windshield &amp; mirror ceramic coating [Essentials+ &amp; Total Control]</h3>
+      <p>Re-application is provided if the ceramic coating on the windshield or sideview mirrors fails to maintain its hydrophobic rain-repelling effect under normal use. Application of aftermarket tint or third-party coatings to treated glass after delivery voids this benefit for the affected surface.</p>
+    </div>
   </div>
 </div><!-- end page3 -->
 
 <div class="cert-card terms-page" id="page4">
   <div class="cert-body">
-    <div class="terms-title">Terms &amp; Conditions</div>
-
-    <div class="terms-section">
-      <ul>
-        <li>This coverage is complementary to, and does not replace, the Stellantis Canada Anti-Corrosion Perforation Limited Membership (5 years / 160,000 km on all body sheet metal).</li>
-        <li>Coverage Term: 7 years for new vehicles / 5 years for pre-owned (Tier 3).</li>
-        <li>Maximum of two (2) service claims per 12-month period.</li>
-      </ul>
+    <div class="legal-header">
+      <div class="legal-brand">STURGEON SHIELD&trade; CLUB</div>
+      <div class="legal-subtitle">Membership Benefits &amp; Coverage</div>
+      <div class="legal-meta">Sturgeon Chrysler Dodge Jeep Ram &middot; 4618 - 50th Ave., Legal, AB T0G 1L0 &middot; sturgeondodge.ca &nbsp; | &nbsp; Page 2</div>
     </div>
 
-    <div class="terms-section">
-      <h3>Section D &mdash; Undercoating Protection</h3>
-      <ul>
-        <li>The underbody of the vehicle is fully coated with a heavy-bodied, pliable solvent-based amber formula that seals against road salt, gravel impact, moisture, and debris.</li>
-        <li>The coating flows into seams and crevices and will not crack, peel, or chip under normal operating conditions.</li>
-        <li>Reduces road noise by up to 50% and provides thermal insulation against extreme hot and cold temperatures.</li>
-        <li>If the undercoating is found to have failed to adhere or provide protection under normal use within the coverage term, the Dealer will reapply the affected section at no charge.</li>
-        <li>Coverage Term: 5 years or 160,000 km from delivery date, whichever comes first.</li>
-        <li>Maximum of one (1) underbody service claim per 12-month period.</li>
-      </ul>
+    <div class="legal-section">
+      <h3>Rust &amp; corrosion protection [Essentials+ &amp; Total Control]</h3>
+      <p><strong>Solvent Rust Inhibitor (Essentials+, Total Control):</strong> Amber-based cavity injection into inner panels, door cavities, and structural crevices. Provides a moisture-displacing, non-drip barrier against rust perforation originating from the inside out. This benefit complements, and does not replace, the Stellantis Canada Anti-Corrosion Perforation Limited Warranty.</p>
+      <p><strong>Electronic Rust Inhibitor (Total Control):</strong> OBD-II plug-in module generating a continuous pulsing surface current to inhibit metal oxidation across the full vehicle body 24/7. No maintenance required. If the device is found defective, replacement will be provided. Rust &amp; Corrosion Coverage term: 10 years (new) / 5 years (pre-owned).</p>
     </div>
 
-    <div class="terms-section">
-      <h3>General Terms &amp; Conditions</h3>
-      <ol>
-        <li><strong>Service Membership &mdash; Not Insurance.</strong> This Certificate is a service membership issued by Sturgeon Chrysler Dodge Jeep Ram (the "Dealer") as the sole obligor. It is not a contract of insurance and is not underwritten by any insurer. Coverage is limited to the repair or re-application of protection products consistent with minor repairs for reasonable and expected wear and tear, as contemplated under Alberta Interpretation Bulletin 05-2024 (Revised December 23, 2024) issued by the Alberta Superintendent of Insurance.</li>
-        <li><strong>Coverage Territory.</strong> Coverage applies to vehicles ordinarily kept and maintained within Canada. Claims must be presented to the Dealer at 4618 - 50th Ave., Legal, AB T0G 1L0.</li>
-        <li><strong>Maintenance Requirements.</strong> To maintain coverage: (a) wash the vehicle regularly using pH-neutral automotive soap; (b) avoid abrasive compounds, harsh chemicals, or direct high-pressure washing at panel edges; (c) follow the Dealer's recommended coating maintenance schedule (available on request); and (d) retain all maintenance records.</li>
-        <li><strong>Transferability.</strong> This Certificate is non-transferable. No refunds.</li>
-        <li><strong>Claim Limits &amp; Remedies.</strong> The Dealer's sole obligation is to repair or re-apply the applicable protection product to the affected surface. The Dealer is not liable for incidental, consequential, or indirect damages including loss of use. The Dealer's maximum aggregate liability shall not exceed the original retail cost of the protection package or services purchased.</li>
-        <li><strong>Governing Law.</strong> This Certificate is governed by the laws of the Province of Alberta. Any unresolved disputes shall be subject to the exclusive jurisdiction of the courts of Alberta.</li>
+    <div class="legal-section">
+      <h3>Tire &amp; rim protection [Total Control only]</h3>
+      <p>Tire and rim replacement or repair is provided through Sturgeon Shield<sup>TM</sup>, with a two-year coverage term from enrollment date. Benefits, sub-limits, and claim procedures for Tire &amp; Rim Protection are governed by the Sturgeon Shield<sup>TM</sup> certificate of coverage, a copy of which was provided at delivery and is available on request.</p>
+    </div>
+
+    <div class="legal-section">
+      <h3>Undercoating [Standalone only]</h3>
+      <p>Full underbody application of a heavy-bodied, pliable solvent-based amber formula. Seals against road salt, gravel impact, moisture, and debris. Will not crack, peel, or chip under normal operating conditions. Re-application of affected sections is provided at no charge if the product is found to have failed to adhere under normal use within the coverage term. Term: 5 years or 160,000 km from application date, whichever comes first.</p>
+    </div>
+
+    <div class="legal-title">Limits &amp; Remedy</div>
+    <div class="legal-section">
+      <h3>General membership terms</h3>
+      <ol class="legal-terms">
+        <li><strong>Service plan, not insurance.</strong> This membership is a service plan issued by Sturgeon Chrysler Dodge Jeep Ram (the "Dealer") as sole obligor. It is not a contract of insurance and is not underwritten by any insurer. Covered services constitute minor repairs and re-applications for reasonable and expected wear and tear, consistent with Alberta Interpretation Bulletin 05-2024 (Revised December 23, 2024).</li>
+        <li><strong>Remedy.</strong> The Dealer's sole obligation is to repair or re-apply the applicable protection product to the affected area. The Dealer is not liable for incidental, consequential, or indirect loss, including loss of use. The Dealer's maximum aggregate service obligation shall not exceed the original retail cost of the enrolled package or service across all claims combined.</li>
+        <li><strong>Rip / tear / burn aggregate cap.</strong> Total service value for interior rip, tear, and burn claims shall not exceed 50% of the Member's original enrolled package price over the life of the membership, inclusive of product and labour costs.</li>
+        <li><strong>Maintenance.</strong> The Member must wash the vehicle regularly using pH-neutral automotive soap, avoid abrasive compounds and harsh chemical wash products, and follow the Dealer's recommended coating maintenance schedule. Failure to maintain may affect eligibility for re-application services.</li>
+        <li><strong>Territory.</strong> Coverage applies to vehicles kept within Canada. Claims must be presented to a Sturgeon Chrysler Dodge Jeep Ram location.</li>
+        <li><strong>Non-transferable.</strong> This membership is non-transferable and non-refundable except as required by applicable consumer protection legislation.</li>
+        <li><strong>Governing law.</strong> Governed by the laws of the Province of Alberta. Unresolved disputes are subject to the exclusive jurisdiction of Alberta courts.</li>
       </ol>
     </div>
-
-    <div class="terms-section">
-      <h3>Exclusions &mdash; What Is Not Covered</h3>
-      <p>This Certificate does not cover damage, loss, or failure arising from or related to any of the following:</p>
-      <ul>
-        <li>Damage from collision, impact, vandalism, theft, fire, flood, hail, or any other external or fortuitous peril.</li>
-        <li>Use of non-approved cleaning products, abrasive polishes, industrial solvents, or improper washing or detailing techniques.</li>
-        <li>Rust perforation (rust-through, creating a hole in sheet metal) &mdash; covered separately under the Stellantis Canada Anti-Corrosion Perforation Limited Membership.</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="cert-footer">
-    <p><strong>Sturgeon Chrysler Dodge Jeep Ram</strong> · 4618 - 50th Ave., Legal, AB  T0G 1L0 · sturgeondodge.ca</p>
-    <p><em>Sturgeon Shield™ Club is a dealer-issued service membership. This Certificate is not an insurance product. Retain for the life of your ownership.</em></p>
   </div>
 </div><!-- end page4 -->
 
-<div class="cert-card terms-page" id="page5">
+<div class="cert-card terms-page legal-tight legal-balanced" id="page5">
   <div class="cert-body">
-    <div class="terms-title">Exclusions &amp; Legal Disclosure</div>
-
-    <div class="terms-section">
-      <h3>Additional Exclusions</h3>
-      <ul>
-        <li>Pre-existing damage, rust, paint defects, chips, or scratches present at the time of delivery or product application.</li>
-        <li>Surfaces where factory paint or clearcoat has been compromised by accident repair, aftermarket modification, paint correction, or third-party product application after delivery.</li>
-        <li>Normal paint swirling, water spots, or minor surface marring from improper washing &mdash; not attributable to coating failure.</li>
-        <li>Interior damage exceeding 5 cm in any direction; deliberate cuts, burns from intentional misuse, or damage caused by sharp tools or weapons.</li>
-        <li>Damage caused by pets, sharp objects, deliberate misuse, or commercial use of the vehicle.</li>
-        <li>Vehicles used for ridesharing, taxi, delivery, emergency services, racing, or other commercial purposes.</li>
-        <li>Vehicles declared a total loss, salvaged, or with an altered or undisclosed VIN.</li>
-        <li>Costs for rental vehicles, towing, storage, or any loss of use during a service claim.</li>
-        <li>Claims submitted after expiry of the applicable coverage term (time or kilometre limit, whichever occurs first).</li>
-        <li>Coverage sections not included in the purchased package tier or as a confirmed add-on service on this Certificate.</li>
-      </ul>
+    <div class="legal-header">
+      <div class="legal-brand">STURGEON SHIELD&trade; CLUB</div>
+      <div class="legal-subtitle">Membership Benefits &amp; Coverage</div>
+      <div class="legal-meta">Sturgeon Chrysler Dodge Jeep Ram &middot; 4618 - 50th Ave., Legal, AB T0G 1L0 &middot; sturgeondodge.ca &nbsp; | &nbsp; Page 3</div>
     </div>
 
-    <div class="terms-section">
-      <h3>How To Make A Claim</h3>
-      <ul>
-        <li>Contact Sturgeon Chrysler Dodge Jeep Ram Service Department at sturgeondodge.ca or by calling the dealership to schedule a claim inspection.</li>
-        <li>Present this Certificate along with a valid government-issued photo ID and proof of vehicle ownership.</li>
-        <li>Describe the damage or coating failure. The service advisor will assess whether it falls within the coverage criteria for the purchased tier and add-ons.</li>
-        <li>If the claim is approved, the Dealer will perform the repair or re-application at no charge, subject to the applicable claim limits.</li>
-        <li>Unauthorized repairs or re-applications performed by third parties will not be reimbursed and may void remaining coverage.</li>
-      </ul>
+    <div class="legal-title">Exclusions</div>
+    <div class="legal-kicker">What is not covered</div>
+    <div class="exclusion-grid">
+      <div class="exclusion-item">Collision, impact, vandalism, theft, fire, flood, or hail damage.</div>
+      <div class="exclusion-item">Non-approved cleaning products, abrasive polishes, or industrial solvents.</div>
+      <div class="exclusion-item">Rust perforation (rust-through creating a hole); see Stellantis Anti-Corrosion Perforation Limited Warranty.</div>
+      <div class="exclusion-item">Pre-existing damage, rust, chips, or scratches present at delivery.</div>
+      <div class="exclusion-item">Surfaces compromised by accident repair or aftermarket paint work after delivery.</div>
+      <div class="exclusion-item">Normal paint swirling or water spots from improper washing not attributable to coating failure.</div>
+      <div class="exclusion-item">Interior damage exceeding 5 cm in any direction.</div>
+      <div class="exclusion-item">Deliberate cuts, burns from intentional misuse, or sharp tool damage.</div>
+      <div class="exclusion-item">Pet damage, or damage caused by commercial use.</div>
+      <div class="exclusion-item">Rideshare, taxi, delivery, emergency services, or racing use.</div>
+      <div class="exclusion-item">Vehicles declared a total loss, salvaged, or with an altered or undisclosed VIN.</div>
+      <div class="exclusion-item">Rental, towing, storage, or any loss-of-use costs during a claim.</div>
+      <div class="exclusion-item">Claims submitted after expiry of the applicable coverage term.</div>
+      <div class="exclusion-item">Benefits not included in the enrolled package or confirmed as a standalone add-on.</div>
+      <div class="exclusion-item">Third-party product applications to treated surfaces after delivery.</div>
     </div>
 
-    <div class="terms-section">
-      <h3>Legal Disclosure &mdash; Alberta &amp; British Columbia</h3>
-      <p><strong>IMPORTANT &mdash; PLEASE READ CAREFULLY</strong></p>
-      <p>This Vehicle Protection Certificate is a service membership contract between the certificate holder and Sturgeon Chrysler Dodge Jeep Ram. It is NOT a contract of insurance, is NOT underwritten by a licensed insurer, and is NOT subject to the Alberta Insurance Act (R.S.A. 2000, c. I-3) or the British Columbia Insurance Act (R.S.B.C. 2012, c. 1).</p>
-      <p>This Certificate is structured to fall within the motor vehicle service plan carve-out under Alberta Interpretation Bulletin 05-2024 (Revised, December 23, 2024) issued by the Alberta Superintendent of Insurance, which exempts service plans providing minor repairs for reasonable and expected wear and tear from classification as insurance. Covered services expressly referenced in that Bulletin include scuff, ding, chip, cut, tear, and scratch repairs (interior or exterior).</p>
-      <p>Coverage under this Certificate is provided solely from the Dealer's own resources as a service obligation arising from its workmanship in applying the listed protection products. No third-party insurer is involved.</p>
-      <p>This Certificate does not limit, replace, or affect any statutory membership rights available under the Alberta Consumer Protection Act, the Alberta Sale of Goods Act, or any other applicable provincial consumer protection legislation.</p>
-      <p><strong>Note for BC-Registered Vehicles:</strong> Coverage under this Certificate is limited to wear-and-tear service and does not constitute automobile insurance as defined under British Columbia law or BCFSA Regulatory Statement No. 24-008 (April 2024).</p>
+    <div class="legal-title">Service Requests</div>
+    <div class="legal-section">
+      <h3>How to make a claim</h3>
+      <ol class="legal-steps">
+        <li>Contact the Sturgeon Service Department at sturgeondodge.ca or by calling the dealership to book a claim inspection.</li>
+        <li>Present this Certificate, a valid government-issued photo ID, and proof of vehicle ownership.</li>
+        <li>The service advisor will assess whether the damage falls within the enrolled membership benefits. If approved, repair or re-application is performed at no charge, subject to the limits described above.</li>
+        <li>Repairs or re-applications performed by third parties without prior Dealer authorization will not be reimbursed and may void remaining membership benefits.</li>
+      </ol>
     </div>
-  </div>
 
-  <div class="cert-footer">
-    <p><strong>Sturgeon Chrysler Dodge Jeep Ram</strong> · 4618 - 50th Ave., Legal, AB  T0G 1L0 · sturgeondodge.ca</p>
-    <p><em>Sturgeon Shield™ Club is a dealer-issued service membership. This Certificate is not an insurance product. Retain for the life of your ownership.</em></p>
+    <div class="legal-title">Legal Disclosure &mdash; Alberta &amp; British Columbia</div>
+    <div class="legal-disclosure">
+      <p>The Sturgeon Shield&trade; Club is a service plan contract between the Member and Sturgeon Chrysler Dodge Jeep Ram. It is not a contract of insurance, is not underwritten by a licensed insurer, and is not subject to the Alberta Insurance Act (R.S.A. 2000, c. I-3) or the British Columbia Insurance Act (R.S.B.C. 2012, c. 1).</p>
+      <p>This plan is structured to fall within the motor vehicle service plan carve-out under Alberta Interpretation Bulletin 05-2024 (Revised, December 23, 2024), which exempts service plans providing minor repairs for reasonable and expected wear and tear from classification as insurance. Coverage is provided solely from the Dealer's own resources.</p>
+      <p>This plan does not limit, replace, or affect any statutory rights under the Alberta Consumer Protection Act, the Alberta Sale of Goods Act, or applicable provincial consumer protection legislation. BC-registered vehicles: coverage is limited to wear-and-tear service and does not constitute automobile insurance as defined under BC law or BCFSA Regulatory Statement No. 24-008 (April 2024). Sturgeon Shield&trade; Club membership is a dealer-issued service plan. Retain Certificate for the life of your ownership.</p>
+    </div>
   </div>
 </div><!-- end page5 -->
 </div><!-- end page-wrapper -->
@@ -1669,7 +1913,7 @@ const PRODUCT_LIBRARY = {
   },
   tireRim: {
     product: 'Tire & Rim Protection',
-    coverage: 'Canada general - Class 1, two year coverage'
+    coverage: 'Sturgeon Shield TM - two year coverage'
   }
 };
 
@@ -1756,18 +2000,49 @@ function addRowToTable(row, idx) {
     <td class="col-date">
       <div class="date-na-wrap">
         ${statusControl}
-        <label>Applied:<input type="date" value="${row.date || ''}"></label>
+        <label>Applied:<input type="date" class="row-date-input" value="${row.date || ''}"></label>
         ${deleteButton}
       </div>
     </td>
   `;
   if (row.na) tr.style.opacity = '0.45';
   tbody.appendChild(tr);
+  const deliveryVal = document.getElementById('deliveryDate')?.value || '';
+  if (deliveryVal && rowIsActiveForAppliedDate(tr)) {
+    const dateInput = tr.querySelector('.row-date-input');
+    if (dateInput) dateInput.value = deliveryVal;
+  }
+}
+
+function rowIsActiveForAppliedDate(row) {
+  if (!row) return false;
+  const naCheckbox = row.querySelector('input[type="checkbox"][title="Mark N/A"]');
+  if (naCheckbox && naCheckbox.checked) return false;
+  if (row.querySelector('.package-row-status.not-included')) return false;
+  if (row.classList.contains('optional-addon-row') && !row.classList.contains('addon-selected')) return false;
+  return true;
+}
+
+function syncAppliedDatesFromDelivery(deliveryVal) {
+  if (!deliveryVal) return;
+  document.querySelectorAll('#productsBody tr').forEach(row => {
+    if (!rowIsActiveForAppliedDate(row)) return;
+    const dateInput = row.querySelector('.row-date-input');
+    if (dateInput) dateInput.value = deliveryVal;
+  });
 }
 
 function toggleRowNA(cb, rowId) {
   const row = document.getElementById(rowId);
   row.style.opacity = cb.checked ? '0.45' : '1';
+  const dateInput = row.querySelector('.row-date-input');
+  if (!dateInput) return;
+  if (cb.checked) {
+    dateInput.value = '';
+  } else {
+    const deliveryVal = document.getElementById('deliveryDate')?.value || '';
+    if (deliveryVal) dateInput.value = deliveryVal;
+  }
 }
 
 function toggleUndercoatingAddOn(cb, rowId) {
@@ -1776,6 +2051,14 @@ function toggleUndercoatingAddOn(cb, rowId) {
   row.classList.toggle('addon-selected', cb.checked);
   const status = row.querySelector('.addon-status');
   if (status) status.textContent = cb.checked ? 'Selected' : 'Not Selected';
+  const dateInput = row.querySelector('.row-date-input');
+  if (!dateInput) return;
+  if (cb.checked) {
+    const deliveryVal = document.getElementById('deliveryDate')?.value || '';
+    if (deliveryVal) dateInput.value = deliveryVal;
+  } else {
+    dateInput.value = '';
+  }
 }
 
 function deleteRow(rowId) {
@@ -1807,21 +2090,15 @@ function escHtml(str) {
 // ─── Certificate number ──────────────────────────────────────────────────────
 function updateCertNum(vin) {
   const v = vin.trim().toUpperCase();
-  const last6 = v.length >= 6 ? v.slice(-6) : v.padEnd(6, '_');
-  const display = 'SS' + last6;
-  document.getElementById('certNumDisplay').textContent = display;
+  const displayEl = document.getElementById('certNumDisplay');
+  if (!displayEl) return;
+  if (!v) {
+    displayEl.innerHTML = '<span class="cert-num-prefix">SS</span><span class="cert-num-placeholder">(type VIN below to populate certificate number)</span>';
+    return;
+  }
+  const last6 = v.length >= 6 ? v.slice(-6) : v;
+  displayEl.textContent = 'SS' + last6;
 }
-
-// ─── Auto expiry (default 5 years from issuing) ─────────────────────────────
-function setDefaultExpiry(issuingVal) {
-  if (!issuingVal) return;
-  const d = new Date(issuingVal);
-  d.setFullYear(d.getFullYear() + 5);
-  const expiry = d.toISOString().split('T')[0];
-  const expiryInput = document.getElementById('expiryDate');
-  if (!expiryInput.value) expiryInput.value = expiry;
-}
-
 // ─── Tier selection ──────────────────────────────────────────────────────────
 const TIER_TO_PKG = { 1: 'Essentials', 2: 'Essentials+', 3: 'Total Control' };
 const PKG_TO_TIER = { 'Essentials': 1, 'Essentials+': 2, 'Total Control': 3 };
@@ -1849,8 +2126,14 @@ function selectTier(t, skipPkg) {
 
 // ─── Package selection ───────────────────────────────────────────────────────
 const PKG_IDS = { 'SA': 'pkg-sa', 'Essentials': 'pkg-ess', 'Essentials+': 'pkg-essp', 'Total Control': 'pkg-tc' };
+const PACKAGE_DISPLAY_LABELS = { 'SA': 'Stand Alone', 'Essentials': 'Essentials', 'Essentials+': 'Essentials+', 'Total Control': 'Total Control' };
+function updateSelectedPackageBadge(val) {
+  const badge = document.getElementById('selectedPackageBadge');
+  if (badge) badge.textContent = PACKAGE_DISPLAY_LABELS[val] || val || 'Stand Alone';
+}
 function selectPkg(val, skipTier) {
   selectedPackageValue = val;
+  updateSelectedPackageBadge(val);
   Object.values(PKG_IDS).forEach(id => {
     const option = document.getElementById(id);
     option.classList.remove('selected');
@@ -1975,7 +2258,7 @@ function clearFormFields(skipConfirm = false) {
   });
 
   document.querySelectorAll('.tier-card, .pkg-option').forEach(el => el.classList.remove('selected'));
-  document.getElementById('certNumDisplay').textContent = 'SS____________';
+  updateCertNum('');
   selectPkg('SA');
   clearAllSignatures();
   clearValidationState();
@@ -2036,7 +2319,7 @@ function validateCertificate() {
   const requiredFields = [
     ['customerName', 'Customer Name'],
     ['vinField', 'VIN'],
-    ['deliveryDate', 'Delivery / Service Date']
+    ['deliveryDate', 'Delivery/Application Date']
   ];
 
   requiredFields.forEach(([id, label]) => {
@@ -2085,6 +2368,20 @@ function validateAndPrint() {
   window.print();
 }
 
+function printContract() {
+  hidePrintToast();
+  document.body.classList.add('print-mode-contract');
+  printWasRequested = true;
+  window.print();
+}
+
+function printLegalDisclosures() {
+  hidePrintToast();
+  document.body.classList.add('print-mode-legal');
+  printWasRequested = true;
+  window.print();
+}
+
 // Initialize after the product table and canvases have layout dimensions.
 window.addEventListener('load', () => {
   selectPkg('SA');
@@ -2102,6 +2399,8 @@ window.addEventListener('load', () => {
 });
 
 window.addEventListener('afterprint', () => {
+  document.body.classList.remove('print-mode-contract');
+  document.body.classList.remove('print-mode-legal');
   if (!printWasRequested) return;
   printWasRequested = false;
   showPrintToast();
